@@ -1,12 +1,15 @@
 window.onload = function start() {
 	letsPlay();
-	turn();
-
 }
 
 function letsPlay() {
 	document.move = "X";
+	if (Math.random() < 0.5) {
+		document.move = "O";
+	}
+	document.winner = null;
 	setMessage(document.move + "'s move");
+	turn();
 }
 
 
@@ -15,22 +18,23 @@ function setMessage(msg) {
 }
 
 function turn() {
-
-		document.getElementById("box1").onclick = function() {if( (document.getElementById("box1").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}}
-		document.getElementById("box2").onclick = function() {if( (document.getElementById("box2").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
-		document.getElementById("box3").onclick = function() {if( (document.getElementById("box3").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
-		document.getElementById("box4").onclick = function() {if( (document.getElementById("box4").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
-		document.getElementById("box5").onclick = function() {if( (document.getElementById("box5").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
-		document.getElementById("box6").onclick = function() {if( (document.getElementById("box6").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
-		document.getElementById("box7").onclick = function() {if( (document.getElementById("box7").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
-		document.getElementById("box8").onclick = function() {if( (document.getElementById("box8").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
-		document.getElementById("box9").onclick = function() {if( (document.getElementById("box9").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
+	document.getElementById("box1").onclick = function() {if( (document.getElementById("box1").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}}
+	document.getElementById("box2").onclick = function() {if( (document.getElementById("box2").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
+	document.getElementById("box3").onclick = function() {if( (document.getElementById("box3").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
+	document.getElementById("box4").onclick = function() {if( (document.getElementById("box4").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
+	document.getElementById("box5").onclick = function() {if( (document.getElementById("box5").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
+	document.getElementById("box6").onclick = function() {if( (document.getElementById("box6").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
+	document.getElementById("box7").onclick = function() {if( (document.getElementById("box7").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
+	document.getElementById("box8").onclick = function() {if( (document.getElementById("box8").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
+	document.getElementById("box9").onclick = function() {if( (document.getElementById("box9").innerText) == ""){(this).innerText = document.move; currentUser();} else {alert("already played");}} 
 }
 
 function currentUser() {
 
 	if (threeInARow(document.move)) {
-			setMessage("Congrats, " + document.move + " you win!");
+		document.winner = document.move;
+		alert("Congrats, " + document.move + " you win! Lets play again");
+		location.reload();
 	} else if (document.move == "X") {
 			document.move = "O";
 			setMessage(document.move + "'s move");
