@@ -10,7 +10,6 @@ function letsPlay() {
 	document.winner = null;
 	if (Math.random() < 0.5) {
 		document.move = "O";
-		//aiTurn();
 		aiMessage(document.move + "'s move whoisAI ELSE");
 	} else {
 		document.move = "X"
@@ -35,18 +34,15 @@ function setMessage(msg) {
 }
 
 function turn() {
-
-		boxNum(1).onclick = function() {if( (boxNum(1).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}}
-		boxNum(2).onclick = function() {if( (boxNum(2).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
-		boxNum(3).onclick = function() {if( (boxNum(3).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
-		boxNum(4).onclick = function() {if( (boxNum(4).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
-		boxNum(5).onclick = function() {if( (boxNum(5).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
-		boxNum(6).onclick = function() {if( (boxNum(6).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
-		boxNum(7).onclick = function() {if( (boxNum(7).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
-		boxNum(8).onclick = function() {if( (boxNum(8).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
-		boxNum(9).onclick = function() {if( (boxNum(9).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}}
-
-
+	boxNum(1).onclick = function() {if( (boxNum(1).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}}
+	boxNum(2).onclick = function() {if( (boxNum(2).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
+	boxNum(3).onclick = function() {if( (boxNum(3).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
+	boxNum(4).onclick = function() {if( (boxNum(4).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
+	boxNum(5).onclick = function() {if( (boxNum(5).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
+	boxNum(6).onclick = function() {if( (boxNum(6).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
+	boxNum(7).onclick = function() {if( (boxNum(7).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
+	boxNum(8).onclick = function() {if( (boxNum(8).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}} 
+	boxNum(9).onclick = function() {if( (boxNum(9).innerText) == ""){(this).innerText = document.move; winnerUser(); aiTurn(); drawGame();} else {alert("already played");}}
 }
 
 function changeTurn() {
@@ -84,32 +80,6 @@ function aiTurn() {
 								winnerUser();
 								document.move = "X";
 	}
-	// if 				(	document.getElementById("box7").innerText != ("O" || "X")) {
-	// 						document.getElementById("box7").innerText = "O";
-	// 						setMessage(document.move + "'s move ai turn 7");
-	// 						winnerUser();
-	// 						document.move = "X";
-	// } else if (	document.getElementById("box8").innerText != ("O" || "X")) {
-	// 						document.getElementById("box8").innerText = "O";
-	// 						setMessage(document.move + "'s move 8");
-	// 						winnerUser();
-	// 						document.move = "X";
-	// } else if (	(document.getElementById("box9").innerText != "O") && (document.getElementById("box9").innerText != "X")) {
-	// 						document.getElementById("box9").innerText = "O";
-	// 						setMessage(document.move + "'s move 9");
-	// 						winnerUser();
-	// 						document.move = "X";
-	// } else if (	document.getElementById("box5").innerText != ("O" || "X")) {
-	// 						document.getElementById("box5").innerText = "O";
-	// 						setMessage(document.move + "'s move 5");
-	// 						winnerUser();
-	// 						document.move = "X";
-	// } else if (	document.getElementById("box6").innerText != ("O" || "X")) {
-	// 						document.getElementById("box6").innerText = "O";
-	// 						setMessage(document.move + "'s move 6");
-	// 						winnerUser();
-	// 						document.move = "X";
-	// }
 	turn();		
 }
 
@@ -151,14 +121,10 @@ function moveCheck(num) {
 }
 
 function drawGame() {
-
-
-		if (moveCheck(1) != "" && moveCheck(2) != "" && moveCheck(3) != "" && moveCheck(4) != "" && moveCheck(5) != "" && moveCheck(6) != "" && moveCheck(7) != "" && moveCheck(8) != "" && moveCheck(9) != "") {
-			alert("draw!!!")
-			location.reload();
-		}
-
-
+	if (moveCheck(1) != "" && moveCheck(2) != "" && moveCheck(3) != "" && moveCheck(4) != "" && moveCheck(5) != "" && moveCheck(6) != "" && moveCheck(7) != "" && moveCheck(8) != "" && moveCheck(9) != "") {
+		alert("draw!!!")
+		location.reload();
+	}
 }
 
 
