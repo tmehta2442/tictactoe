@@ -193,6 +193,8 @@ function aiTurn() {
 								boxNumID(2).innerText = "O";
 		} else if(	firstColCorners() && 	(boxNumID(4).innerText == "")) {
 								boxNumID(4).innerText = "O"
+		} else if(  thirdColCorners()  && (boxNumID(6).innerText == "")){
+								boxNumID(6).innerText = "O";
 		} else if(	bottomCorners() 	&&	(boxNumID(8).innerText == "")) {
 								boxNumID(8).innerText = "O"
 		} else if(	rowCheck1a() 			&& 	(boxNumID(3).innerText == "")) {
@@ -214,7 +216,7 @@ function aiTurn() {
 								boxNumID(2).innerText = "O";
 		} else if ((boxNumID(1).innerText == "O") && (boxNumID(6).innerText == "O") && (boxNumID(7).innerText == "")) {
 								boxNumID(7).innerText = "O";
-		} else if ((boxNumID(4).innerText == "") && (boxNumID(8).innerText != "O") && (boxNumID(9).innerText != "O") && (boxNumID(4).innerText == "")) {
+		} else if ((boxNumID(4).innerText == "") && (boxNumID(8).innerText != "O") && (boxNumID(9).innerText != "O")) {
 								boxNumID(4).innerText = "O";
 		} else if ((boxNumID(8).innerText == "O") && (boxNumID(9).innerText == "O") && (boxNumID(7).innerText == "")){
 								boxNumID(7).innerText = "O";
@@ -232,6 +234,8 @@ function aiTurn() {
 								boxNumID(7).innerText = "O";
 		}	else if (knightCheck1() && knightCheck6() && (boxNumID(7).innerText == "")){
 								boxNumID(7).innerText = "O";
+		} else if ((boxNumID(2).innerText == "O") && (boxNumID(5).innerText == "O") && (boxNumID(8).innerText == "")){
+								boxNumID(8).innerText = "O";
 		}
 		checkAll();
 
