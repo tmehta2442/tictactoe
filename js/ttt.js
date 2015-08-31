@@ -1,3 +1,15 @@
+// Hi! So this turned out to be a lot more difficult than I had expected... 
+// I have some refactoring to do, and eventually I want to mimick the way
+// threeInARow is being used, but for 2 space and other situations. 
+// Anyway, right now this is somewhat playable... some errors persist,
+// but with some more time and code cleanup this will actaully work quite well.
+
+// Thanks!
+
+// -TJ
+
+//starting game
+
 window.onload = function start() {
 	letsPlay();
 	mouseClicked();
@@ -7,6 +19,7 @@ function boxNumID(num) {
 	return document.getElementById("box" + num)
 }
 
+//determines who goes first
 function letsPlay() {
 	document.winner = null;
 	if (Math.random() < 0.5) {
@@ -19,6 +32,7 @@ function letsPlay() {
 	whoIsAi();
 }
 
+//setting a message & letting player go first, or running up AI  depending on document.move
 function whoIsAi(){
 	if (document.move == "X"){
 		turn();
@@ -36,6 +50,7 @@ function setMessage(msg) {
 	document.getElementById("msg").innerText = msg;
 }
 
+//on a click move will be set to board
 function turn() {
 	
 	boxNumID(1).onclick = function() {if( (boxNumID(1).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}}
@@ -49,20 +64,23 @@ function turn() {
 	boxNumID(9).onclick = function() {if( (boxNumID(9).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}}
 }
 
+//counter for turns
 var turnNumber = 0;
 	function mouseClicked() {
-	console.log('mouseClick / turnNumber = ' + turnNumber);
+	//console.log('mouseClick / turnNumber = ' + turnNumber);
 	turnNumber++;
 }
 
+//check for a winner, update who is playing and incremement mouse click
 function checkAll() {
 	winnerUser();
 	document.move = "X";
-	console.log("this move is " + document.move);
+	//console.log("this move is " + document.move);
 	setMessage(document.move + "'s move");
 	mouseClicked();
 }
 
+//checking if game is a draw, counter for turn increased, container for "holdThis" modified for AI logic, then the aiturn is run
 function withinTurn() {
 	mouseClicked();
 	holdThis();
@@ -199,6 +217,10 @@ function anyCheck() {
 	}
 }
 var box1A
+
+// yeah, lots going on here... major refactoring at some point.... after each main if/elsif checkAll() is run
+// check out threeInARow() ... that is what I want to change much of this to
+
 function aiTurn() {
 	document.move = "O";
 	
@@ -358,6 +380,7 @@ function aiTurn() {
 	turn();		
 }
 
+//sees who won
 function winnerUser() {
 	if (threeInARow(document.move)) {
 		document.winner = document.move;
@@ -371,6 +394,7 @@ function winnerUser() {
 	}
 }
 
+//I want to eventaully change my entire AI turn logic to this... here we're checking for any three in a row wins
 function threeInARow(turn) {
 	var win = false;
 	if (winCheck(1, 2, 3, turn) ||
@@ -396,14 +420,16 @@ function winCheck(a, b, c, turn) {
 	return win;
 }
 
+// function that will return to us the innerText value for specified box. This is used in conjunction w/ threeInARow
 function moveCheck(num) {
 	return document.getElementById("box" + num).innerText;
 }
 
-function endMove(num) {
-	return document.getElementById("box" + num);
-}
+// function endMove(num) {
+// 	return document.getElementById("box" + num);
+// }
 
+//should only be run if all tiles are taken
 function drawGame() {
 	if (moveCheck(1) != "" && moveCheck(2) != "" && moveCheck(3) != "" && moveCheck(4) != "" && moveCheck(5) != "" && moveCheck(6) != "" && moveCheck(7) != "" && moveCheck(8) != "" && moveCheck(9) != "") {
 		if (win != true) {
