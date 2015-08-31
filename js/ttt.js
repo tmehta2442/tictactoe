@@ -22,10 +22,10 @@ function letsPlay() {
 function whoIsAi(){
 	if (document.move == "X"){
 		turn();
-		setMessage(document.move + "'s move whoisAI");
+		setMessage(document.move + "'s move");
 	} else {
 		aiTurn();
-		setMessage(document.move + "'s move whoisAI");
+		setMessage(document.move + "'s move");
 	}
 }
 
@@ -59,7 +59,7 @@ function checkAll() {
 	winnerUser();
 	document.move = "X";
 	console.log("this move is " + document.move);
-	setMessage(document.move + "'s move ai turn");
+	setMessage(document.move + "'s move");
 	mouseClicked();
 }
 
@@ -155,27 +155,28 @@ function knight7() 	 			 { if( (boxNumID(6).innerText == moveHold) && (boxNumID(
 function knight8() 	 			 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {horse8 						= true;	return horse8; return true;} else { return false; }}
 
 function anyCheck() {
-	if 			(topCorners() 			&& (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
+	if  		((boxNumID(1).innerText == "O") && (boxNumID(7).innerText == "O") && (boxNumID(4).innerText == "")) {((boxNumID(4).innerText = "O"));}
+	else if (topCorners() 			&& (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
 	else if (bottomCorners() 		&& (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
 	else if (firstColCorners() 	&& (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
 	else if (thirdColCorners() 	&& (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
 	else if (rowCheck1a() 			&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
 	else if (rowCheck1b() 			&& (boxNumID(1).innerText == "")) {(boxNumID(1).innerText = "O");}
 	else if (rowCheck2a() 			&& (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
-	else if (rowCheck2b() 			&& (diaCheck1() != true)&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "Osdfsdf");}
+	else if (rowCheck2b() 			&& (diaCheck1() != true)&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
 	else if (rowCheck3a() 			&& (boxNumID(9).innerText == "")) {(boxNumID(9).innerText = "O");}
 	else if (rowCheck3b() 			&& (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
 	else if (colCheck1a() 			&& (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
 	else if (colCheck1b() 			&& (boxNumID(1).innerText == "")) {(boxNumID(1).innerText = "O");}
 	else if (colCheck2a() 			&& (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
-	else if (colCheck2b() 			&& (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
+	else if (colCheck2b() 			&& (!diaCheck4()) && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
 	else if (colCheck3a() 			&& (boxNumID(9).innerText == "")) {(boxNumID(9).innerText = "O");}
 	else if (colCheck3b() 			&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
   else if (diaCheck1() 				&& (boxNumID(9).innerText == "")) {(boxNumID(9).innerText = "O");}
   else if (diaCheck2() 				&& (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
   else if (diaCheck3() 				&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
   else if (diaCheck4() 				&& (boxNumID(1).innerText == "")) {(boxNumID(1).innerText = "O");}
-
+  //else if ((boxNumID(1).innerText == "O") && (boxNumID(7).innerText == "O") && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText == "O")}
 
 
 	else if (turnNumber == 8) {
@@ -345,9 +346,9 @@ function aiTurn() {
 		checkAll();
 	} else if (turnNumber == 9) {
 		if (document.move == "O") {
-			for (var testing23 = 1; testing23 <= 9; testing23++) {
-				if (boxNumID(testing23).innerText == "") {
-					boxNumID(testing23).innerText = "O";
+			for (var turn9 = 1; turn9 <= 9; turn9++) {
+				if (boxNumID(turn9).innerText == "") {
+					boxNumID(turn9).innerText = "O";
 					checkAll();
 				}				
 			}
