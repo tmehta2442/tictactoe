@@ -1,6 +1,5 @@
 window.onload = function start() {
 	letsPlay();
-	boxNumClass();
 	mouseClicked();
 }
 
@@ -8,24 +7,15 @@ function boxNumID(num) {
 	return document.getElementById("box" + num)
 }
 
-function boxNumClass(ece) {
-	numClass = document.getElementsByClassName(ece);
-
-	for (var i = 0; i < numClass.length; i++) {
-		var testing = numClass[i].innerText;
-		console.log(testing + " inner");
-		return testing;
-	}
-}
-
 function letsPlay() {
 	document.winner = null;
 	//if (Math.random() < 0.5) {
 	if (true) {
 		document.move = "O";
-		aiMessage(document.move + "'s move letsPlay");
+		aiMessage(document.move + " went first");
 	} else {
 		document.move = "X"
+		aiMessage(document.move + " went first");
 	}
 	whoIsAi();
 }
@@ -33,6 +23,7 @@ function letsPlay() {
 function whoIsAi(){
 	if (document.move == "X"){
 		setMessage(document.move + "'s move whoisAI");
+		aiMessage(document.move + "'s move letsPlay");
 		turn();
 	} else {
 		aiTurn();
@@ -60,9 +51,6 @@ function turn() {
 	boxNumID(9).onclick = function() {if( (boxNumID(9).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}}
 }
 
-function changeTurn() {
-
-}
 var turnNumber = 0;
 	function mouseClicked() {
 	console.log('mouseClick / turnNumber = ' + turnNumber);
@@ -75,48 +63,14 @@ function checkAll() {
 	console.log("this move is " + document.move);
 	setMessage(document.move + "'s move ai turn");
 	mouseClicked();
-
-	
-		
 }
 
 function withinTurn() {
 	mouseClicked();
-	xHasCornerCheck();
-	xHasEdgeCheck();
-	xHasSquare1Check();
-	xHasSquare2Check();
-	xHasSquare3Check();
-	xHasSquare4Check();
-	// rowCheck1a();
-	// rowCheck1b();
-	// rowCheck2a();
-	// rowCheck2b();
-	// rowCheck3a();
-	// rowCheck3b();
-	// colCheck1a();
-	// colCheck1b();
-	// colCheck2a();
-	// colCheck2b();
-	// colCheck3a();
-	// colCheck3b();
-	// diaCheck1();
-	// diaCheck2();
-	// diaCheck3();
-	// diaCheck4();
+	holdThis();
 	aiTurn();
 	drawGame();
-
 }
-var haveCenter 	= false;
-
-var xHasCorner 	= false;
-var xHasEdge 		=	false;
-var xHasSquare1 = false;
-var xHasSquare2 = false;
-var xHasSquare3 = false;
-var xHasSquare4 = false;
-
 
 var row1a = false;
 var row1b = false;
@@ -139,281 +93,126 @@ var bottomCornersX = false;
 var firstColCornersX = false;
 var thirdColCornersX = false;
 
-function topCorners() {
-	if	((boxNumID(1).innerText == "X") && (boxNumID(3).innerText == "X")) {
-		topCornersX = true;
-		return topCornersX;
-	}
-}
-
-function bottomCorners() {
-	if	((boxNumID(7).innerText == "X") && (boxNumID(9).innerText == "X")) {
-		bottomCornersX = true;
-		return bottomCornersX;
-	}
-}
-
-function firstColCorners() {
-	if	((boxNumID(1).innerText == "X") && (boxNumID(7).innerText == "X")) {
-		firstColCornersX = true;
-		return firstColCornersX;
-	}
-}
-
-function thirdColCorners() {
-	if	((boxNumID(3).innerText == "X") && (boxNumID(9).innerText == "X")) {
-		thirdColCornersX = true;
-		return thirdColCornersX;
-	}
-}
-
-function rowCheck1a() {
-	if ( (boxNumID(1).innerText == "X") && (boxNumID(2).innerText == "X")) {
-		row1a = true;
-		return row1a;
-	}
-}
-
-function rowCheck1b() {
-	if ( (boxNumID(2).innerText == "X") && (boxNumID(3).innerText == "X")) {
-		row1a = true;
-		return row1b;
-	}
-}
-function rowCheck2a() {
-	if ( (boxNumID(4).innerText != "X") && (boxNumID(5).innerText != "X")) {
-		row2a = true;
-		return row2a;
-	}
-}
-function rowCheck2b() {
-	if ( (boxNumID(5).innerText == "X") && (boxNumID(6).innerText == "X")) {
-		row2a = true;
-		return row2a;
-	}
-}
-function rowCheck3a() {
-	if ( (boxNumID(7).innerText == "X") && (boxNumID(8).innerText == "X")) {
-		row2a = true;
-		return row2a;
-	}
-}
-function rowCheck3b() {
-	if ( (boxNumID(8).innerText == "X") && (boxNumID(9).innerText == "X")) {
-		row2a = true;
-		return row2a;
-	}
-}
-function colCheck1a() {
-	if ( (boxNumID(1).innerText == "X") && (boxNumID(4).innerText == "X")) {
-		row2a = true;
-		return row2a;
-	}
-}
-function colCheck1b() {
-	if ( (boxNumID(4).innerText == "X") && (boxNumID(7).innerText == "X")) {
-		row2a = true;
-		return row2a;
-	}
-}
-function colCheck2a() {
-	if ( (boxNumID(2).innerText == "X") && (boxNumID(5).innerText == "X")) {
-		col2a = true;
-		return col2a;
-	}
-}
-function colCheck2b() {
-	if ( (boxNumID(5).innerText == "X") && (boxNumID(8).innerText == "X")) {
-		col2b = true;
-		return col2b;
-	}
-}
-function colCheck3a() {
-	if ( (boxNumID(3).innerText == "X") && (boxNumID(6).innerText == "X")) {
-		col3a = true;
-		return col3a;
-	}
-}
-function colCheck3b() {
-	if ( (boxNumID(6).innerText == "X") && (boxNumID(9).innerText == "X")) {
-		col3b = true;
-		return col3b;
-	}
-}
-function diaCheck1() {
-	if ( (boxNumID(1).innerText == "X") && (boxNumID(5).innerText == "X")) {
-		dia1 = true;
-		return dia1;
-	}
-}
-function diaCheck2() {
-	if ( (boxNumID(3).innerText == "X") && (boxNumID(5).innerText == "X")) {
-		dia2 = true;
-		return dia2;
-	}
-}
-function diaCheck3() {
-	if ( (boxNumID(7).innerText == "X") && (boxNumID(5).innerText == "X")) {
-		dia3 = true;
-		return dia3;
-	}
-}
-function diaCheck4() {
-	if ( (boxNumID(9).innerText == "X") && (boxNumID(5).innerText == "X")) {
-		dia4 = true;
-		return dia4;
-	}
-}
-function xHasCornerCheck() {
-	if ( (boxNumID(1).innerText == "X") || (boxNumID(3).innerText == "X") || (boxNumID(7).innerText == "X") || (boxNumID(9).innerText == "X") ) {
-		xHasCorner = true;
+var moveHold = null;
+function holdThis () {
+	if ( document.move == "X") {
+		moveHold = "X";
 	} else {
-		xHasCorner = false;
+		moveHold = "O";
 	}
+	return moveHold;
 }
 
-function xHasEdgeCheck() {
-	if ( (boxNumID(2).innerText == "X") || (boxNumID(4).innerText == "X") || (boxNumID(6).innerText == "X") || (boxNumID(8).innerText == "X") ) {
-		xHasEdge = true;
-	} else {
-		xHasEdge = false;
-	}
-}
+function topCorners() 		 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(3).innerText == moveHold)) {topCornersX 			= true; return topCornersX;}}
+function bottomCorners() 	 {if( (boxNumID(7).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {bottomCornersX 	= true; return bottomCornersX;}}
+function firstColCorners() {if( (boxNumID(1).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {firstColCornersX = true;	return firstColCornersX;}}
+function thirdColCorners() {if( (boxNumID(3).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {thirdColCornersX = true;	return thirdColCornersX;}}
+function rowCheck1a() 		 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(2).innerText == moveHold)) {row1a 						= true;	return row1a;}}
+function rowCheck1b() 		 {if( (boxNumID(2).innerText == moveHold) && (boxNumID(3).innerText == moveHold)) {row1a 						= true;	return row1b;}}
+function rowCheck2a() 		 {if( (boxNumID(4).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {row2a 						= true; return row2a;}}
+function rowCheck2b() 		 {if( (boxNumID(5).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {row2a 						= true;	return row2a;}}
+function rowCheck3a() 		 {if( (boxNumID(7).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {row2a 						= true;	return row2a;}}
+function rowCheck3b() 		 {if( (boxNumID(8).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {row2a 						= true;	return row2a;}}
+function colCheck1a() 		 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {row2a 						= true;	return row2a;}}
+function colCheck1b() 		 {if( (boxNumID(4).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {row2a 						= true; return row2a;}}
+function colCheck2a() 		 {if( (boxNumID(2).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {col2a 						= true;	return col2a;}}
+function colCheck2b() 		 {if( (boxNumID(5).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {col2b 						= true;	return col2b;}}
+function colCheck3a() 		 {if( (boxNumID(3).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {col3a 						= true;	return col3a;}}
+function colCheck3b() 		 {if( (boxNumID(6).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {col3b 						= true;	return col3b;}}
+function diaCheck1() 			 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia1 						= true;	return dia1;}}
+function diaCheck2() 			 {if( (boxNumID(3).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia2 						= true;	return dia2;}}
+function diaCheck3() 			 {if( (boxNumID(7).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia3 						= true;	return dia3;}}
+function diaCheck4() 			 {if( (boxNumID(9).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia4 						= true;	return dia4;}}
 
-function xHasSquare1Check() {
-	if ( (boxNumID(1).innerText == "X") || (boxNumID(2).innerText == "X") || (boxNumID(4).innerText == "X") || (boxNumID(5).innerText == "X") ) {
-		xHasSquare1 = true;
-	} else {
-		xHasSquare1 = false;
-	}
-}
-
-function xHasSquare2Check() {
-	if ( (boxNumID(2).innerText == "X") || (boxNumID(3).innerText == "X") || (boxNumID(5).innerText == "X") || (boxNumID(6).innerText == "X") ) {
-		xHasSquare2 = true;
-	} else {
-		xHasSquare2 = false;
-	}
-}
-
-function xHasSquare3Check() {
-	if ( (boxNumID(4).innerText == "X") || (boxNumID(5).innerText == "X") || (boxNumID(7).innerText == "X") || (boxNumID(8).innerText == "X") ) {
-		xHasSquare3 = true;
-	} else {
-		xHasSquare3 = false;
-	}
-}
-
-function xHasSquare4Check() {
-	if ( (boxNumID(5).innerText == "X") || (boxNumID(6).innerText == "X") || (boxNumID(8).innerText == "X") || (boxNumID(9).innerText == "X") ) {
-		xHasSquare4 = true;
-	} else {
-		xHasSquare4 = false;
-	}
-}
-
+function knightCheck1() 	 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {horse1 						= true;	return horse1;}}
+function knightCheck2() 	 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {horse2 						= true;	return horse2;}}
+function knightCheck3() 	 {if( (boxNumID(2).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {horse3 						= true;	return horse3;}}
+function knightCheck4() 	 {if( (boxNumID(2).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {horse4 						= true;	return horse4;}}
+function knightCheck5() 	 {if( (boxNumID(3).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {horse5 						= true;	return horse5;}}
+function knightCheck6() 	 {if( (boxNumID(3).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {horse6 						= true;	return horse6;}}
+function knightCheck7() 	 {if( (boxNumID(4).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {horse7 						= true;	return horse7;}}
+function knightCheck8() 	 {if( (boxNumID(6).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {horse8 						= true;	return horse8;}}
 
 var box1A
 function aiTurn() {
 	document.move = "O";
 	
-	if (				turnNumber == 0) {
-							boxNumID(5).innerText = "O";
-							haveCenter = true;
-							checkAll();
-	} else if ((turnNumber == 1) && (boxNumID(5).innerText == "")) {
-							boxNumID(5).innerText = "O";
-							haveCenter = true;
-							checkAll();
-	} else if ((turnNumber == 3)) {
-		if 			( boxNumID(9).innerText == "") {
-							boxNumID(9).innerText = "O";
-							checkAll();
-		} else if(boxNumID(1).innerText == "") {
-							boxNumID(1).innerText = "O";
-							checkAll();
-		}
+	if (turnNumber == 0) {
+								boxNumID(5).innerText = "O";
+								checkAll();
+	
+	} else if 	((turnNumber == 1) && (boxNumID(5).innerText == "")) {
+								boxNumID(5).innerText = "O";
+								checkAll();
+	} else if 	 (turnNumber == 2) {
 
-	} else if ((turnNumber == 4)) {
+	} else if 	 (turnNumber == 3) {
+		if 				 (boxNumID(9).innerText == "") {
+							 	boxNumID(9).innerText = "O";
+							
+		} else if  (boxNumID(1).innerText == "") {
+								boxNumID(1).innerText = "O";
+							
+		}
+		checkAll();
+	} else if (turnNumber == 4) {
 
 			
-	} else if ((turnNumber == 5)) {
-		if 			( boxNumID(1).innerText == "") {
-							boxNumID(1).innerText = "O"
-							checkAll();
-		} else if((boxNumID(1).innerText == "X") && (boxNumID(6).innerText == "X") && (boxNumID(8).innerText == "")) {
-							boxNumID(8).innerText = "O";
-							checkAll();
-		} else if((boxNumID(1).innerText == "X") && (boxNumID(8).innerText == "X") && (boxNumID(3).innerText == "")) {
-							boxNumID(3).innerText = "O";
-							checkAll();
-		} else if(topCorners() 			&& 	(boxNumID(2).innerText == "")) {
-							boxNumID(2).innerText = "O";
-							checkAll();
-		} else if(topCorners() 			&& 	(boxNumID(2).innerText == "")) {
-							boxNumID(2).innerText = "O";
-							checkAll();
-		} else if(firstColCorners() && 	(boxNumID(4).innerText == "")) {
-							boxNumID(4).innerText = "O"
-							checkAll();
-		} else if(bottomCorners() 	&&	(boxNumID(8).innerText == "")) {
-							boxNumID(8).innerText = "O"
-							checkAll();
-		} else if(rowCheck1a() 			&& 	(boxNumID(3).innerText == "")) {
-							(boxNumID(3).innerText = "O")
-							checkAll();
-		}	 else if(colCheck1a() 		&& 	(boxNumID(7).innerText == "")) {
-							(boxNumID(7).innerText = "O")
-							checkAll();
+	} else if (turnNumber == 5) {
+		if 			( 	boxNumID(1).innerText == "") {
+								boxNumID(1).innerText = "O"
+		} else if( 	knightCheck2() && (boxNumID(7).innerText == "")) {
+								boxNumID(7).innerText = "O";
+		} else if(  knightCheck1() && (boxNumID(3).innerText == "")) {
+								boxNumID(3).innerText = "O";
+		} else if(	knightCheck4() && (boxNumID(4).innerText == "")) {
+								boxNumID(4).innerText = "O";
+		} else if(	topCorners() 			&& 	(boxNumID(2).innerText == "")) {
+								boxNumID(2).innerText = "O";
+		} else if(	topCorners() 			&& 	(boxNumID(2).innerText == "")) {
+								boxNumID(2).innerText = "O";
+		} else if(	firstColCorners() && 	(boxNumID(4).innerText == "")) {
+								boxNumID(4).innerText = "O"
+		} else if(	bottomCorners() 	&&	(boxNumID(8).innerText == "")) {
+								boxNumID(8).innerText = "O"
+		} else if(	rowCheck1a() 			&& 	(boxNumID(3).innerText == "")) {
+								boxNumID(3).innerText = "O";
+		} else if(	rowCheck3b() 			&& 	(boxNumID(7).innerText == "")) {
+								boxNumID(7).innerText = "O";
+		}	else if(	colCheck1a() 			&& 	(boxNumID(7).innerText == "")) {
+								boxNumID(7).innerText = "O";
+		}	else if(	colCheck3b()			&& (boxNumID(3).innerText == "")) {
+								boxNumID(3).innerText = "O";				
+		}	
+		checkAll();
+	} else if (turnNumber == 6) {
+
+	} else if (turnNumber == 7) {
+		if 				((boxNumID(3).innerText == "O") && (boxNumID(7).innerText == "")) {
+								boxNumID(7).innerText = "O";
+		} else if ((boxNumID(1).innerText == "O") && (boxNumID(3).innerText == "O") && (boxNumID(2).innerText == "")) {
+								boxNumID(2).innerText = "O";
+		} else if ((boxNumID(1).innerText == "O") && (boxNumID(6).innerText == "O") && (boxNumID(7).innerText == "")) {
+								boxNumID(7).innerText = "O";
+		} else if ((boxNumID(4).innerText == "") && (boxNumID(8).innerText != "O") && (boxNumID(9).innerText != "O") && (boxNumID(4).innerText == "")) {
+								boxNumID(4).innerText = "O";
+		} else if ((boxNumID(8).innerText == "O") && (boxNumID(9).innerText == "O") && (boxNumID(7).innerText == "")){
+								boxNumID(7).innerText = "O";
+		} else if ((boxNumID(3).innerText == "O") && (boxNumID(9).innerText == "O") && (boxNumID(6).innerText == "")){
+								boxNumID(6).innerText = "O";
+		} else if ((boxNumID(4).innerText == "O") && (boxNumID(5).innerText == "O") && (boxNumID(6).innerText == "")){
+								boxNumID(6).innerText = "O";
+		} else if ((boxNumID(5).innerText == "O") && (boxNumID(7).innerText == "O") && (boxNumID(3).innerText == "")){
+								boxNumID(3).innerText = "O";
+		} else if ((boxNumID(7).innerText == "O") && (boxNumID(9).innerText == "O") && (boxNumID(8).innerText == "")){
+								boxNumID(8).innerText = "O";
+		} else if ((boxNumID(1).innerText == "X") && (boxNumID(6).innerText == "X") && (boxNumID(7).innerText == "X") && (boxNumID(3).innerText == "")){
+								boxNumID(3).innerText = "O";
+		}	else if ((boxNumID(1).innerText == "O") && (boxNumID(4).innerText == "O") && (boxNumID(7).innerText == "")){
+								boxNumID(7).innerText = "O";
 		}
-		// } else if (xHasSquare1 && (boxNumID(1).innerText == "X") && (boxNumID(2).innerText == "X")) {
-		// 					boxNumID(3).innerText = "O";
-		// 					checkAll();
-		// }  else if (xHasSquare1 && (boxNumID(1).innerText == "X") && (boxNumID(7).innerText == "X")) {
-		// 					boxNumID(4).innerText = "O";
-		// 					checkAll();
-		// } else if (xHasSquare1 && (boxNumID(1).innerText == "X") && (boxNumID(2).innerText != "X") && (boxNumID(2).innerText == "X")) {
-		// 					boxNumID(2).innerText = "O";
-		// 					checkAll();
-		// } else if (col1a && (boxNumID(7).innerText != "X")) {
-		// 					boxNumID(7).innerText = "O";
-		// 					checkAll();
-		// } else if (col1a && (boxNumID(3).innerText == "X") && (boxNumID(9).innerText == "X")){
-		// 					boxNumID(6).innerText = "O";
-		// 					checkAll();
-		// } else if (col1a && (boxNumID(7).innerText != "X") (boxNumID(7).innerText != "X") ) {
-		// 					boxNumID(7).innerText = "O";
-		// 					checkAll();
-		// }
-		// else if (xHasSquare3 || (boxNumID(6).innerText == "X") && (boxNumID(3).innerText != "X")) {
-		// 					boxNumID(3).innerText = "O";
-		// 					checkAll();
-		// }
-	} else if ( turnNumber == 6) {
-		if 			((xHasSquare3 || (boxNumID(6).innerText == "X")) && (boxNumID(3).innerText != "X")) {
-							boxNumID(3).innerText = "O";
-							checkAll();
-		} 
-	} else if ( turnNumber == 7) {
-		if 			( xHasSquare2 && (boxNumID(2).innerText == "")) {
-							boxNumID(2).innerText = "O";
-							checkAll();
-		}	else if ((boxNumID(2).innerText == "0") && (boxNumID(3).innerText == "0") && (boxNumID(8).innerText == "")) {
-							boxNumID(8).innerText = "O";
-							checkAll();
-		}		else if ((boxNumID(1).innerText == "X") && (boxNumID(2).innerText == "X") && (boxNumID(7).innerText == "X")) {
-							boxNumID(6).innerText = "O";
-							checkAll();
-		}	else if ((boxNumID(1).innerText == "X") && (boxNumID(2).innerText == "X") && (boxNumID(6).innerText == "X")) {
-							boxNumID(7).innerText = "O";
-							checkAll();
-		}	else if ((boxNumID(1).innerText == "X") && (boxNumID(3).innerText == "X") && (boxNumID(8).innerText == "")) {
-							boxNumID(8).innerText = "O";
-							checkAll();
-		}	else if( (boxNumID(1).innerText == "X") && (boxNumID(7).innerText == "X") && (boxNumID(4).innerText == "") ){
-							boxNumID(4).innerText = "O";
-							checkAll();
-		} 
+		checkAll();
+
 	} else if (turnNumber == 8) {
 
 	} else if (turnNumber == 9) {
@@ -421,6 +220,7 @@ function aiTurn() {
 			for (var testing23 = 1; testing23 <= 9; testing23++) {
 				if (boxNumID(testing23).innerText == "") {
 					boxNumID(testing23).innerText = "O";
+					checkAll();
 				}				
 			}
 		}
@@ -453,9 +253,9 @@ function threeInARow(turn) {
 	return win;
 }
 
-
+var win = false;
 function winCheck(a, b, c, turn) {
-	var win = false;
+	
 	if (moveCheck(a) == turn && moveCheck(b) == turn && moveCheck(c) == turn) {
 		win = true;
 	}
@@ -472,55 +272,10 @@ function endMove(num) {
 
 function drawGame() {
 	if (moveCheck(1) != "" && moveCheck(2) != "" && moveCheck(3) != "" && moveCheck(4) != "" && moveCheck(5) != "" && moveCheck(6) != "" && moveCheck(7) != "" && moveCheck(8) != "" && moveCheck(9) != "") {
-		alert("draw!!!")
+		if (win != true) {
+			alert("draw!!!")
+		}
 		location.reload();
 	}
 }
-
-
-
-
-// else if ( ( 	boxNumID(5).innerText == "O") || (boxNumID(5).innerText == "X")) {
-	// 								boxNumID(7).innerText = "O";
-	// 								checkAll();
-	// } else if ( (		boxNumID(2).innerText == "X") || (boxNumID(4).innerText == "X") || (boxNumID(6).innerText == "X") || (boxNumID(8).innerText == "X") ) {
-	// 	if 			(	(	(	boxNumID(2).innerText == "X") || (boxNumID(4).innerText == "X")) &&  (boxNumID(9) != "O") ) {
-	// 								boxNumID(9).innerText = "O";
-	// 								checkAll();
-	// 	} else if (	(	boxNumID(6).innerText == "X") || (boxNumID(8).innerText == "X") ) {
-	// 								boxNumID(1).innerText = "O";
-	// 								checkAll();		
-	// 	}
-
-	// }	else if ( (	boxNumID(1).innerText == "X") || (boxNumID(3).innerText == "X") || (boxNumID(7).innerText == "X") || (boxNumID(9).innerText == "X") ) {
-	// 	alert("working!! 1");
-	// 	if (			(	boxNumID(2).innerText == "X") || (boxNumID(4).innerText == "X") ) {
-	// 		alert("working!! 2");
-	// 							// boxNumID(1).innerText = "O";
-	// 	} else if ((boxNumID(6).innerText == "X") || (boxNumID(8).innerText == "X") ) {
-	// 							boxNumID(1).innerText = "O";
-	// 	}		
-	// }
-
-	// else if ( ( boxNumID(9).innerText != "O") && (boxNumID(9).innerText != "X")) {
-	// 							boxNumID(9).innerText = "O";
-	// 							setMessage(document.move + "'s move ai turn 9");
-	// 							winnerUser();
-	// 							document.move = "X";
-	// } else if ( ( boxNumID(3).innerText != "O") && (boxNumID(3).innerText != "X")) {
-	// 							boxNumID(3).innerText = "O";
-	// 							setMessage(document.move + "'s move ai turn 3");
-	// 							winnerUser();
-	// 							document.move = "X";
-	// } else if ( ( boxNumID(4).innerText != "O") && (boxNumID(4).innerText != "X")) {
-	// 							boxNumID(4).innerText = "O";
-	// 							setMessage(document.move + "'s move ai turn 4");
-	// 							winnerUser();
-	// 							document.move = "X";
-	// } else if ( ( boxNumID(6).innerText != "O") && (boxNumID(6).innerText != "X")) {
-	// 							boxNumID(6).innerText = "O";
-	// 							setMessage(document.move + "'s move ai turn 6");
-	// 							winnerUser();
-	// 							document.move = "X";
-	// }
 
