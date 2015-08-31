@@ -9,8 +9,7 @@ function boxNumID(num) {
 
 function letsPlay() {
 	document.winner = null;
-	//if (Math.random() < 0.5) {
-	if (true) {
+	if (Math.random() < 0.5) {
 		document.move = "O";
 		aiMessage(document.move + " went first");
 	} else {
@@ -22,12 +21,9 @@ function letsPlay() {
 
 function whoIsAi(){
 	if (document.move == "X"){
-		
-		
 		turn();
 		setMessage(document.move + "'s move whoisAI");
 	} else {
-
 		aiTurn();
 		setMessage(document.move + "'s move whoisAI");
 	}
@@ -39,11 +35,10 @@ function aiMessage(msg) {
 function setMessage(msg) {
 	document.getElementById("msg").innerText = msg;
 }
-var box1A
 
 function turn() {
 	
-	boxNumID(1).onclick = function() {if( (boxNumID(1).innerText) == ""){(this).innerText = document.move; withinTurn(); box1A = boxNumID(1).innerText;} else {alert("already played");}}
+	boxNumID(1).onclick = function() {if( (boxNumID(1).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}}
 	boxNumID(2).onclick = function() {if( (boxNumID(2).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
 	boxNumID(3).onclick = function() {if( (boxNumID(3).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
 	boxNumID(4).onclick = function() {if( (boxNumID(4).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
@@ -75,26 +70,42 @@ function withinTurn() {
 	drawGame();
 }
 
-var row1a = false;
-var row1b = false;
-var row2a = false;
-var row2b = false;
-var row3a = false;
-var row3b = false;
-var col1a = false;
-var col1b = false;
-var col2a = false;
-var col2b = false;
-var col3a = false;
-var col3b = false;
-var dia1 	= false;
-var dia2 	= false;
-var dia3 	= false;
-var dia4 	= false;
-var topCornersX = false;
-var bottomCornersX = false;
-var firstColCornersX = false;
-var thirdColCornersX = false;
+var row1a 	= false;
+var row1b 	= false;
+var row2a 	= false;
+var row2b 	= false;
+var row3a 	= false;
+var row3b 	= false;
+var col1a 	= false;
+var col1b 	= false;
+var col2a 	= false;
+var col2b 	= false;
+var col3a 	= false;
+var col3b 	= false;
+var smdia1 	= false;
+var smdia2 	= false;
+var smdia3 	= false;
+var smdia4 	= false;
+var dia1 		= false;
+var dia2 		= false;
+var dia3 		= false;
+var dia4 		= false;
+var diaend1 = false;
+var diaend2 = false;
+var midcolX	= false;
+var midrowX	= false;
+var horse1	= false;
+var horse2	= false;
+var horse3	= false;
+var horse4	= false;
+var horse5	= false;
+var horse6	= false;
+var horse7	= false;
+var horse8	= false;
+var topcornersX = false;
+var bottomcornersX = false;
+var firstcolcornersX = false;
+var thirdcolcornersX = false;
 
 var moveHold = null;
 function holdThis () {
@@ -106,36 +117,86 @@ function holdThis () {
 	return moveHold;
 }
 
-function topCorners() 		 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(3).innerText == moveHold)) {topCornersX 			= true; return topCornersX;}}
-function bottomCorners() 	 {if( (boxNumID(7).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {bottomCornersX 	= true; return bottomCornersX;}}
-function firstColCorners() {if( (boxNumID(1).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {firstColCornersX = true;	return firstColCornersX;}}
-function thirdColCorners() {if( (boxNumID(3).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {thirdColCornersX = true;	return thirdColCornersX;}}
-function rowCheck1a() 		 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(2).innerText == moveHold)) {row1a 						= true;	return row1a;}}
-function rowCheck1b() 		 {if( (boxNumID(2).innerText == moveHold) && (boxNumID(3).innerText == moveHold)) {row1a 						= true;	return row1b;}}
-function rowCheck2a() 		 {if( (boxNumID(4).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {row2a 						= true; return row2a;}}
-function rowCheck2b() 		 {if( (boxNumID(5).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {row2a 						= true;	return row2a;}}
-function rowCheck3a() 		 {if( (boxNumID(7).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {row2a 						= true;	return row2a;}}
-function rowCheck3b() 		 {if( (boxNumID(8).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {row2a 						= true;	return row2a;}}
-function colCheck1a() 		 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {row2a 						= true;	return row2a;}}
-function colCheck1b() 		 {if( (boxNumID(4).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {row2a 						= true; return row2a;}}
-function colCheck2a() 		 {if( (boxNumID(2).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {col2a 						= true;	return col2a;}}
-function colCheck2b() 		 {if( (boxNumID(5).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {col2b 						= true;	return col2b;}}
-function colCheck3a() 		 {if( (boxNumID(3).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {col3a 						= true;	return col3a;}}
-function colCheck3b() 		 {if( (boxNumID(6).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {col3b 						= true;	return col3b;}}
-function diaCheck1() 			 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia1 						= true;	return dia1;}}
-function diaCheck2() 			 {if( (boxNumID(3).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia2 						= true;	return dia2;}}
-function diaCheck3() 			 {if( (boxNumID(7).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia3 						= true;	return dia3;}}
-function diaCheck4() 			 {if( (boxNumID(9).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia4 						= true;	return dia4;}}
+function topCorners() 		 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(3).innerText == moveHold)) {topcornersX 			= true; return topcornersX; return true;} else { return false; }}
+function bottomCorners() 	 { if( (boxNumID(7).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {bottomcornersX 		= true; return bottomcornersX; return true;} else { return false; }}
+function firstColCorners() { if( (boxNumID(1).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {firstcolcornersX 	= true;	return firstcolcornersX; return true;} else { return false; }}
+function thirdColCorners() { if( (boxNumID(3).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {thirdcolcornersX 	= true;	return thirdcolcornersX; return true;} else { return false; }}
+function midCol() 		 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {midcolX						= true;	return midcolX; return true;} else { return false; }}
+function midRow() 		 		 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {midrowX						= true;	return midrowX; return true;} else { return false; }}
+function rowCheck1a() 		 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(2).innerText == moveHold)) {row1a 						= true;	return row1a; return true;} else { return false; }}
+function rowCheck1b() 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(3).innerText == moveHold)) {row1b 						= true;	return row1b; return true;} else { return false; }}
+function rowCheck2a() 		 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {row2a 						= true; return row2a; return true;} else { return false; }}
+function rowCheck2b() 		 { if( (boxNumID(5).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {row2b 						= true;	return row2b; return true;} else { return false; }}
+function rowCheck3a() 		 { if( (boxNumID(7).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {row3a 						= true;	return row3a; return true;} else { return false; }}
+function rowCheck3b() 		 { if( (boxNumID(8).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {row3b 						= true;	return row3b; return true;} else { return false; }}
+function colCheck1a() 		 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {col1a 						= true;	return col1a; return true;} else { return false; }}
+function colCheck1b() 		 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {col1b 						= true; return col1b; return true;} else { return false; }}
+function colCheck2a() 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {col2a 						= true;	return col2a; return true;} else { return false; }}
+function colCheck2b() 		 { if( (boxNumID(5).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {col2b 						= true;	return col2b; return true;} else { return false; }}
+function colCheck3a() 		 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {col3a 						= true;	return col3a; return true;} else { return false; }}
+function colCheck3b() 		 { if( (boxNumID(6).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {col3b 						= true;	return col3b; return true;} else { return false; }}
+function smDiaCheck1() 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {smdia1 						= true;	return smdia1; return true;} else { return false; }}
+function smDiaCheck2() 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {smdia2 						= true;	return smdia2; return true;} else { return false; }}
+function smDiaCheck3() 		 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {smdia3 						= true;	return smdia3; return true;} else { return false; }}
+function smDiaCheck4() 		 { if( (boxNumID(6).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {smdia4 						= true;	return smdia4; return true;} else { return false; }}
+function diaCheck1() 			 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia1 							= true;	return dia1; return true;} else { return false; }}
+function diaCheck2() 			 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia2 							= true;	return dia2; return true;} else { return false; }}
+function diaCheck3() 			 { if( (boxNumID(7).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia3 							= true;	return dia3; return true;} else { return false; }}
+function diaCheck4() 			 { if( (boxNumID(9).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia4 							= true;	return dia4; return true;} else { return false; }}
+function diaEndCheck1() 	 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {diaend1 					= true;	return diaend1; return true;} else { return false; }}
+function diaEndCheck2() 	 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {diaend2 					= true;	return diaend2; return true;} else { return false; }}
+function knight1() 	 			 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {horse1 						= true;	return horse1; return true;} else { return false; }}
+function knight2() 	 			 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {horse2 						= true;	return horse2; return true;} else { return false; }}
+function knight3() 	 			 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {horse3 						= true;	return horse3; return true;} else { return false; }}
+function knight4() 	 			 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {horse4 						= true;	return horse4; return true;} else { return false; }}
+function knight5() 	 			 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {horse5 						= true;	return horse5; return true;} else { return false; }}
+function knight6() 	 			 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {horse6 						= true;	return horse6; return true;} else { return false; }}
+function knight7() 	 			 { if( (boxNumID(6).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {horse7 						= true;	return horse7; return true;} else { return false; }}
+function knight8() 	 			 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {horse8 						= true;	return horse8; return true;} else { return false; }}
 
-function knightCheck1() 	 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {horse1 						= true;	return horse1;}}
-function knightCheck2() 	 {if( (boxNumID(1).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {horse2 						= true;	return horse2;}}
-function knightCheck3() 	 {if( (boxNumID(2).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {horse3 						= true;	return horse3;}}
-function knightCheck4() 	 {if( (boxNumID(2).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {horse4 						= true;	return horse4;}}
-function knightCheck5() 	 {if( (boxNumID(3).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {horse5 						= true;	return horse5;}}
-function knightCheck6() 	 {if( (boxNumID(3).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {horse6 						= true;	return horse6;}}
-function knightCheck7() 	 {if( (boxNumID(4).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {horse7 						= true;	return horse7;}}
-function knightCheck8() 	 {if( (boxNumID(6).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {horse8 						= true;	return horse8;}}
+function anyCheck() {
+	if 			(topCorners() 			&& (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
+	else if (bottomCorners() 		&& (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
+	else if (firstColCorners() 	&& (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
+	else if (thirdColCorners() 	&& (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
+	else if (rowCheck1a() 			&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
+	else if (rowCheck1b() 			&& (boxNumID(1).innerText == "")) {(boxNumID(1).innerText = "O");}
+	else if (rowCheck2a() 			&& (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
+	else if (rowCheck2b() 			&& (diaCheck1() != true)&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "Osdfsdf");}
+	else if (rowCheck3a() 			&& (boxNumID(9).innerText == "")) {(boxNumID(9).innerText = "O");}
+	else if (rowCheck3b() 			&& (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
+	else if (colCheck1a() 			&& (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
+	else if (colCheck1b() 			&& (boxNumID(1).innerText == "")) {(boxNumID(1).innerText = "O");}
+	else if (colCheck2a() 			&& (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
+	else if (colCheck2b() 			&& (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
+	else if (colCheck3a() 			&& (boxNumID(9).innerText == "")) {(boxNumID(9).innerText = "O");}
+	else if (colCheck3b() 			&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
+  else if (diaCheck1() 				&& (boxNumID(9).innerText == "")) {(boxNumID(9).innerText = "O");}
+  else if (diaCheck2() 				&& (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
+  else if (diaCheck3() 				&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
+  else if (diaCheck4() 				&& (boxNumID(1).innerText == "")) {(boxNumID(1).innerText = "O");}
 
+
+
+	else if (turnNumber == 8) {
+		if 			(knight1() && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
+		else if (knight1() && (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
+		else if (knight2() && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
+		else if (knight2() && (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
+		else if (knight3() && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
+		else if (knight3() && (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
+		else if (knight4() && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
+		else if (knight4() && (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
+		else if (knight5() && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
+		else if (knight5() && (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
+		else if (knight6() && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
+		else if (knight6() && (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
+		else if (knight7() && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
+		else if (knight7() && (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
+		else if (knight8() && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
+		else if (knight8() && (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
+	}
+}
 var box1A
 function aiTurn() {
 	document.move = "O";
@@ -156,11 +217,9 @@ function aiTurn() {
 		checkAll();
 	} else if 	 (turnNumber == 3) {
 		if 				 (boxNumID(9).innerText == "") {
-							 	boxNumID(9).innerText = "O";
-							
+							 	boxNumID(9).innerText = "O";					
 		} else if  (boxNumID(1).innerText == "") {
-								boxNumID(1).innerText = "O";
-							
+								boxNumID(1).innerText = "O";			
 		}
 		checkAll();
 	} else if (turnNumber == 4) {
@@ -168,24 +227,58 @@ function aiTurn() {
 								boxNumID(9).innerText = "O";
 		} else if ( (diaCheck2() || diaCheck4()) && (boxNumID(1).innerText == "")) {
 								boxNumID(1).innerText = "O";
+		} else if ( (diaEndCheck1() || diaEndCheck2() ) && (boxNumID(4).innerText == "")) {
+								boxNumID(4).innerText = "O"
+		} else if ((smDiaCheck1() || smDiaCheck4()) && (boxNumID(7).innerText == "")) {
+								boxNumID(7).innerText = "O"
+		}	else if ((smDiaCheck3() || smDiaCheck2()) && (boxNumID(7).innerText == "")) {
+								boxNumID(7).innerText = "O"
+		} else if ( colCheck1a() && (boxNumID(7).innerText == "")) {
+								boxNumID(7).innerText = "O";
 		} else if ( colCheck2a() && (boxNumID(8).innerText == "")) {
 								boxNumID(8).innerText = "O";
 		} else if ( colCheck2b() && (boxNumID(2).innerText == "")) {
 								boxNumID(2).innerText = "O";
-		} else if ( rowCheck2a && (boxNumID(6).innerText == "")) {
+		} else if ( colCheck3a() && (boxNumID(9).innerText == "")) {
+								boxNumID(9).innerText = "O";
+		} else if ( rowCheck1a() && (boxNumID(3).innerText == "")) {
+								boxNumID(3).innerText = "O";
+		} else if ( rowCheck2a() && (boxNumID(6).innerText == "")) {
 								boxNumID(6).innerText = "O";
-		} else if ( rowCheck3b && (boxNumID(4).innerText == "")) {
+		} else if ( rowCheck2b() && (boxNumID(4).innerText == "")) {
 								boxNumID(4).innerText = "O";
+		}	else if ( rowCheck3b() && (boxNumID(4).innerText == "")) {
+								boxNumID(4).innerText = "O";
+		}	else if ( firstColCorners() && (boxNumID(4).innerText == "")) {
+								boxNumID(4).innerText = "O";
+		}	else if ( thirdColCorners() && (boxNumID(6).innerText == "")) {
+								boxNumID(6).innerText = "O";
+		} else if ( topCorners() && (boxNumID(2).innerText == "")) {
+								boxNumID(2).innerText = "O";
+		} else if ( midCol() && (boxNumID(7).innerText == "")) {
+								boxNumID(7).innerText = "O";
+		} else if ( midRow() && (boxNumID(2).innerText == "")) {
+								boxNumID(2).innerText = "O";
+		} else if ( knight1() && (boxNumID(4).innerText == "")) {
+								boxNumID(4).innerText = "O";
+		} else if ((knight2() || knight8() )&& (boxNumID(2).innerText == "")) {
+								boxNumID(2).innerText = "O";
+		} else if ((knight3() || knight5()) && (boxNumID(1).innerText == "")) {
+								boxNumID(1).innerText = "O";
+		} else if((knight6() || knight7()) && (boxNumID(9).innerText == "")) {
+								boxNumID(9).innerText = "O";
+		} else if ( knight4() && (boxNumID(3).innerText == "")) {
+								boxNumID(3).innerText = "O";
 		}
-			
+		checkAll();		
 	} else if (turnNumber == 5) {
 		if 			 ( 	boxNumID(1).innerText == "") {
 								boxNumID(1).innerText = "O"
-		} else if( 	knightCheck2() && (boxNumID(7).innerText == "")) {
+		} else if( 	knight2() && (boxNumID(7).innerText == "")) {
 								boxNumID(7).innerText = "O";
-		} else if(  knightCheck1() && (boxNumID(3).innerText == "")) {
+		} else if(  knight1() && (boxNumID(3).innerText == "")) {
 								boxNumID(3).innerText = "O";
-		} else if(	knightCheck4() && (boxNumID(4).innerText == "")) {
+		} else if(	knight4() && (boxNumID(4).innerText == "")) {
 								boxNumID(4).innerText = "O";
 		} else if(	topCorners() 			&& 	(boxNumID(2).innerText == "")) {
 								boxNumID(2).innerText = "O";
@@ -208,7 +301,12 @@ function aiTurn() {
 		}	
 		checkAll();
 	} else if (turnNumber == 6) {
+		anyCheck();
+		if (win == false) {
 
+		}
+		checkAll();
+		
 	} else if (turnNumber == 7) {
 		if 				((boxNumID(3).innerText == "O") && (boxNumID(7).innerText == "")) {
 								boxNumID(7).innerText = "O";
@@ -228,11 +326,11 @@ function aiTurn() {
 								boxNumID(3).innerText = "O";
 		} else if ((boxNumID(7).innerText == "O") && (boxNumID(9).innerText == "O") && (boxNumID(8).innerText == "")){
 								boxNumID(8).innerText = "O";
-		} else if (knightCheck2() && (boxNumID(7).innerText == "X") && (boxNumID(3).innerText == "")){
+		} else if (knight2() && (boxNumID(7).innerText == "X") && (boxNumID(3).innerText == "")){
 								boxNumID(3).innerText = "O";
 		}	else if ((boxNumID(1).innerText == "O") && (boxNumID(4).innerText == "O") && (boxNumID(7).innerText == "")){
 								boxNumID(7).innerText = "O";
-		}	else if (knightCheck1() && knightCheck6() && (boxNumID(7).innerText == "")){
+		}	else if (knight1() && knight6() && (boxNumID(7).innerText == "")){
 								boxNumID(7).innerText = "O";
 		} else if ((boxNumID(2).innerText == "O") && (boxNumID(5).innerText == "O") && (boxNumID(8).innerText == "")){
 								boxNumID(8).innerText = "O";
@@ -240,7 +338,11 @@ function aiTurn() {
 		checkAll();
 
 	} else if (turnNumber == 8) {
+		anyCheck();
+		if (win == false) {
 
+		}
+		checkAll();
 	} else if (turnNumber == 9) {
 		if (document.move == "O") {
 			for (var testing23 = 1; testing23 <= 9; testing23++) {
@@ -258,7 +360,12 @@ function aiTurn() {
 function winnerUser() {
 	if (threeInARow(document.move)) {
 		document.winner = document.move;
-		alert("Congrats, " + document.move + " you win! Lets play again winnerUser");
+		if (document.move == "O") {
+			alert("the computer won, as expected");
+		} else {
+			alert("wait, you should not have been able to win...");
+		}
+
 		location.reload();
 	}
 }
