@@ -11,8 +11,8 @@
 //starting game
 
 window.onload = function start() {
+	revTurn();
 	letsPlay();
-	mouseClicked();
 }
 
 function boxNumID(num) {
@@ -22,14 +22,16 @@ function boxNumID(num) {
 //determines who goes first
 function letsPlay() {
 	document.winner = null;
-	if (Math.random() < 0.5) {
+	// if (Math.random() < 0.5) {
+	if (true) {
 		document.move = "O";
 		aiMessage(document.move + " went first");
+		whoIsAi();
 	} else {
 		document.move = "X"
 		aiMessage(document.move + " went first");
 	}
-	whoIsAi();
+	
 }
 
 //setting a message & letting player go first, or running up AI  depending on document.move
@@ -50,24 +52,10 @@ function setMessage(msg) {
 	document.getElementById("msg").innerText = msg;
 }
 
-//on a click move will be set to board
-function turn() {
-	
-	boxNumID(1).onclick = function() {if( (boxNumID(1).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}}
-	boxNumID(2).onclick = function() {if( (boxNumID(2).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
-	boxNumID(3).onclick = function() {if( (boxNumID(3).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
-	boxNumID(4).onclick = function() {if( (boxNumID(4).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
-	boxNumID(5).onclick = function() {if( (boxNumID(5).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
-	boxNumID(6).onclick = function() {if( (boxNumID(6).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
-	boxNumID(7).onclick = function() {if( (boxNumID(7).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
-	boxNumID(8).onclick = function() {if( (boxNumID(8).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}} 
-	boxNumID(9).onclick = function() {if( (boxNumID(9).innerText) == ""){(this).innerText = document.move; withinTurn();} else {alert("already played");}}
-}
-
 //counter for turns
 var turnNumber = 0;
-	function mouseClicked() {
-	//console.log('mouseClick / turnNumber = ' + turnNumber);
+function revTurn() {
+	console.log('mouseClick / turnNumber = ' + (turnNumber + 1));
 	turnNumber++;
 }
 
@@ -75,14 +63,14 @@ var turnNumber = 0;
 function checkAll() {
 	winnerUser();
 	document.move = "X";
-	//console.log("this move is " + document.move);
+	console.log("this move is " + document.move);
 	setMessage(document.move + "'s move");
-	mouseClicked();
+	revTurn();
 }
 
 //checking if game is a draw, counter for turn increased, container for "holdThis" modified for AI logic, then the aiturn is run
 function withinTurn() {
-	mouseClicked();
+	revTurn();
 	holdThis();
 	aiTurn();
 	drawGame();
@@ -124,8 +112,10 @@ var topcornersX = false;
 var bottomcornersX = false;
 var firstcolcornersX = false;
 var thirdcolcornersX = false;
-
+var anyCheckWin = false;
+var win = false;
 var moveHold = null;
+
 function holdThis () {
 	if ( document.move == "X") {
 		moveHold = "X";
@@ -135,109 +125,14 @@ function holdThis () {
 	return moveHold;
 }
 
-function topCorners() 		 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(3).innerText == moveHold)) {topcornersX 			= true; return topcornersX; return true;} else { return false; }}
-function bottomCorners() 	 { if( (boxNumID(7).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {bottomcornersX 		= true; return bottomcornersX; return true;} else { return false; }}
-function firstColCorners() { if( (boxNumID(1).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {firstcolcornersX 	= true;	return firstcolcornersX; return true;} else { return false; }}
-function thirdColCorners() { if( (boxNumID(3).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {thirdcolcornersX 	= true;	return thirdcolcornersX; return true;} else { return false; }}
-function midCol() 		 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {midcolX						= true;	return midcolX; return true;} else { return false; }}
-function midRow() 		 		 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {midrowX						= true;	return midrowX; return true;} else { return false; }}
-function rowCheck1a() 		 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(2).innerText == moveHold)) {row1a 						= true;	return row1a; return true;} else { return false; }}
-function rowCheck1b() 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(3).innerText == moveHold)) {row1b 						= true;	return row1b; return true;} else { return false; }}
-function rowCheck2a() 		 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {row2a 						= true; return row2a; return true;} else { return false; }}
-function rowCheck2b() 		 { if( (boxNumID(5).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {row2b 						= true;	return row2b; return true;} else { return false; }}
-function rowCheck3a() 		 { if( (boxNumID(7).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {row3a 						= true;	return row3a; return true;} else { return false; }}
-function rowCheck3b() 		 { if( (boxNumID(8).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {row3b 						= true;	return row3b; return true;} else { return false; }}
-function colCheck1a() 		 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {col1a 						= true;	return col1a; return true;} else { return false; }}
-function colCheck1b() 		 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {col1b 						= true; return col1b; return true;} else { return false; }}
-function colCheck2a() 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {col2a 						= true;	return col2a; return true;} else { return false; }}
-function colCheck2b() 		 { if( (boxNumID(5).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {col2b 						= true;	return col2b; return true;} else { return false; }}
-function colCheck3a() 		 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {col3a 						= true;	return col3a; return true;} else { return false; }}
-function colCheck3b() 		 { if( (boxNumID(6).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {col3b 						= true;	return col3b; return true;} else { return false; }}
-function smDiaCheck1() 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {smdia1 						= true;	return smdia1; return true;} else { return false; }}
-function smDiaCheck2() 		 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {smdia2 						= true;	return smdia2; return true;} else { return false; }}
-function smDiaCheck3() 		 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {smdia3 						= true;	return smdia3; return true;} else { return false; }}
-function smDiaCheck4() 		 { if( (boxNumID(6).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {smdia4 						= true;	return smdia4; return true;} else { return false; }}
-function diaCheck1() 			 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia1 							= true;	return dia1; return true;} else { return false; }}
-function diaCheck2() 			 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia2 							= true;	return dia2; return true;} else { return false; }}
-function diaCheck3() 			 { if( (boxNumID(7).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia3 							= true;	return dia3; return true;} else { return false; }}
-function diaCheck4() 			 { if( (boxNumID(9).innerText == moveHold) && (boxNumID(5).innerText == moveHold)) {dia4 							= true;	return dia4; return true;} else { return false; }}
-function diaEndCheck1() 	 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {diaend1 					= true;	return diaend1; return true;} else { return false; }}
-function diaEndCheck2() 	 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {diaend2 					= true;	return diaend2; return true;} else { return false; }}
-function knight1() 	 			 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {horse1 						= true;	return horse1; return true;} else { return false; }}
-function knight2() 	 			 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(6).innerText == moveHold)) {horse2 						= true;	return horse2; return true;} else { return false; }}
-function knight3() 	 			 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {horse3 						= true;	return horse3; return true;} else { return false; }}
-function knight4() 	 			 { if( (boxNumID(2).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {horse4 						= true;	return horse4; return true;} else { return false; }}
-function knight5() 	 			 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(4).innerText == moveHold)) {horse5 						= true;	return horse5; return true;} else { return false; }}
-function knight6() 	 			 { if( (boxNumID(3).innerText == moveHold) && (boxNumID(8).innerText == moveHold)) {horse6 						= true;	return horse6; return true;} else { return false; }}
-function knight7() 	 			 { if( (boxNumID(6).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {horse7 						= true;	return horse7; return true;} else { return false; }}
-function knight8() 	 			 { if( (boxNumID(4).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {horse8 						= true;	return horse8; return true;} else { return false; }}
-
-function anyCheck() {
-	if  		((boxNumID(1).innerText == "O") && (boxNumID(7).innerText == "O") && (boxNumID(4).innerText == "")) {((boxNumID(4).innerText = "O"));}
-	else if (topCorners() 			&& (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
-	else if (bottomCorners() 		&& (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
-	else if (firstColCorners() 	&& (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
-	else if (thirdColCorners() 	&& (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
-	else if (rowCheck1a() 			&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
-	else if (rowCheck1b() 			&& (boxNumID(1).innerText == "")) {(boxNumID(1).innerText = "O");}
-	else if (rowCheck2a() 			&& (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
-	else if (rowCheck2b() 			&& (diaCheck1() != true)&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
-	else if (rowCheck3a() 			&& (boxNumID(9).innerText == "")) {(boxNumID(9).innerText = "O");}
-	else if (rowCheck3b() 			&& (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
-	else if (colCheck1a() 			&& (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
-	else if (colCheck1b() 			&& (boxNumID(1).innerText == "")) {(boxNumID(1).innerText = "O");}
-	else if (colCheck2a() 			&& (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
-	else if (colCheck2b() 			&& (!diaCheck4()) && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
-	else if (colCheck3a() 			&& (boxNumID(9).innerText == "")) {(boxNumID(9).innerText = "O");}
-	else if (colCheck3b() 			&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
-  else if (diaCheck1() 				&& (boxNumID(9).innerText == "")) {(boxNumID(9).innerText = "O");}
-  else if (diaCheck2() 				&& (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
-  else if (diaCheck3() 				&& (boxNumID(3).innerText == "")) {(boxNumID(3).innerText = "O");}
-  else if (diaCheck4() 				&& (boxNumID(1).innerText == "")) {(boxNumID(1).innerText = "O");}
-  //else if ((boxNumID(1).innerText == "O") && (boxNumID(7).innerText == "O") && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText == "O")}
-
-
-	else if (turnNumber == 8) {
-		if 			(knight1() && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
-		else if (knight1() && (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
-		else if (knight2() && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
-		else if (knight2() && (boxNumID(7).innerText == "")) {(boxNumID(7).innerText = "O");}
-		else if (knight3() && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
-		else if (knight3() && (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
-		else if (knight4() && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
-		else if (knight4() && (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
-		else if (knight5() && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
-		else if (knight5() && (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
-		else if (knight6() && (boxNumID(4).innerText == "")) {(boxNumID(4).innerText = "O");}
-		else if (knight6() && (boxNumID(6).innerText == "")) {(boxNumID(6).innerText = "O");}
-		else if (knight7() && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
-		else if (knight7() && (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
-		else if (knight8() && (boxNumID(2).innerText == "")) {(boxNumID(2).innerText = "O");}
-		else if (knight8() && (boxNumID(8).innerText == "")) {(boxNumID(8).innerText = "O");}
-	}
-}
-var box1A
-
-// yeah, lots going on here... major refactoring at some point.... after each main if/elsif checkAll() is run
-// check out threeInARow() ... that is what I want to change much of this to
-
 function aiTurn() {
 	document.move = "O";
-	
-	if (turnNumber == 0) {
+	holdThis();
+
+	if 	((turnNumber == 1) && (boxNumID(5).innerText == "")) {
 								boxNumID(5).innerText = "O";
 								checkAll();
-	
-	} else if 	((turnNumber == 1) && (boxNumID(5).innerText == "")) {
-								boxNumID(5).innerText = "O";
-								checkAll();
-	} else if 	( turnNumber == 2) {
-		if 				( boxNumID(5).innerText == "") {
-								boxNumID(5).innerText = "O";						
-		} if 			( boxNumID(5).innerText == "X") {
-								boxNumID(7).innerText = "O";
-		}
-		checkAll();
+
 	} else if 	 (turnNumber == 3) {
 		if 				 (boxNumID(9).innerText == "") {
 							 	boxNumID(9).innerText = "O";					
@@ -245,135 +140,37 @@ function aiTurn() {
 								boxNumID(1).innerText = "O";			
 		}
 		checkAll();
-	} else if (turnNumber == 4) {
-		if 				( diaCheck1() && (boxNumID(9).innerText == "")) {
-								boxNumID(9).innerText = "O";
-		} else if ( (diaCheck2() || diaCheck4()) && (boxNumID(1).innerText == "")) {
-								boxNumID(1).innerText = "O";
-		} else if ( (diaEndCheck1() || diaEndCheck2() ) && (boxNumID(4).innerText == "")) {
-								boxNumID(4).innerText = "O"
-		} else if ((smDiaCheck1() || smDiaCheck4()) && (boxNumID(7).innerText == "")) {
-								boxNumID(7).innerText = "O"
-		}	else if ((smDiaCheck3() || smDiaCheck2()) && (boxNumID(7).innerText == "")) {
-								boxNumID(7).innerText = "O"
-		} else if ( colCheck1a() && (boxNumID(7).innerText == "")) {
-								boxNumID(7).innerText = "O";
-		} else if ( colCheck2a() && (boxNumID(8).innerText == "")) {
-								boxNumID(8).innerText = "O";
-		} else if ( colCheck2b() && (boxNumID(2).innerText == "")) {
-								boxNumID(2).innerText = "O";
-		} else if ( colCheck3a() && (boxNumID(9).innerText == "")) {
-								boxNumID(9).innerText = "O";
-		} else if ( rowCheck1a() && (boxNumID(3).innerText == "")) {
-								boxNumID(3).innerText = "O";
-		} else if ( rowCheck2a() && (boxNumID(6).innerText == "")) {
-								boxNumID(6).innerText = "O";
-		} else if ( rowCheck2b() && (boxNumID(4).innerText == "")) {
-								boxNumID(4).innerText = "O";
-		}	else if ( rowCheck3b() && (boxNumID(4).innerText == "")) {
-								boxNumID(4).innerText = "O";
-		}	else if ( firstColCorners() && (boxNumID(4).innerText == "")) {
-								boxNumID(4).innerText = "O";
-		}	else if ( thirdColCorners() && (boxNumID(6).innerText == "")) {
-								boxNumID(6).innerText = "O";
-		} else if ( topCorners() && (boxNumID(2).innerText == "")) {
-								boxNumID(2).innerText = "O";
-		} else if ( midCol() && (boxNumID(7).innerText == "")) {
-								boxNumID(7).innerText = "O";
-		} else if ( midRow() && (boxNumID(2).innerText == "")) {
-								boxNumID(2).innerText = "O";
-		} else if ( knight1() && (boxNumID(4).innerText == "")) {
-								boxNumID(4).innerText = "O";
-		} else if ((knight2() || knight8() )&& (boxNumID(2).innerText == "")) {
-								boxNumID(2).innerText = "O";
-		} else if ((knight3() || knight5()) && (boxNumID(1).innerText == "")) {
-								boxNumID(1).innerText = "O";
-		} else if((knight6() || knight7()) && (boxNumID(9).innerText == "")) {
-								boxNumID(9).innerText = "O";
-		} else if ( knight4() && (boxNumID(3).innerText == "")) {
-								boxNumID(3).innerText = "O";
-		}
-		checkAll();		
+		
 	} else if (turnNumber == 5) {
-		if 			 ( 	boxNumID(1).innerText == "") {
-								boxNumID(1).innerText = "O"
-		} else if( 	knight2() && (boxNumID(7).innerText == "")) {
-								boxNumID(7).innerText = "O";
-		} else if(  knight1() && (boxNumID(3).innerText == "")) {
-								boxNumID(3).innerText = "O";
-		} else if(	knight4() && (boxNumID(4).innerText == "")) {
-								boxNumID(4).innerText = "O";
-		} else if(	topCorners() 			&& 	(boxNumID(2).innerText == "")) {
-								boxNumID(2).innerText = "O";
-		} else if(	topCorners() 			&& 	(boxNumID(2).innerText == "")) {
-								boxNumID(2).innerText = "O";
-		} else if(	firstColCorners() && 	(boxNumID(4).innerText == "")) {
-								boxNumID(4).innerText = "O"
-		} else if(  thirdColCorners()  && (boxNumID(6).innerText == "")){
-								boxNumID(6).innerText = "O";
-		} else if(	bottomCorners() 	&&	(boxNumID(8).innerText == "")) {
-								boxNumID(8).innerText = "O"
-		} else if(	rowCheck1a() 			&& 	(boxNumID(3).innerText == "")) {
-								boxNumID(3).innerText = "O";
-		} else if(	rowCheck3b() 			&& 	(boxNumID(7).innerText == "")) {
-								boxNumID(7).innerText = "O";
-		}	else if(	colCheck1a() 			&& 	(boxNumID(7).innerText == "")) {
-								boxNumID(7).innerText = "O";
-		}	else if(	colCheck3b()			&& (boxNumID(3).innerText == "")) {
-								boxNumID(3).innerText = "O";				
-		}	
+		anyCheck();
+
+		if (anyCheckWin == false) {
+			moveHold = "X";
+			anyCheck();
+			knightCheck();
+		}
+
 		checkAll();
 	} else if (turnNumber == 6) {
-		anyCheck();
-		if (win == false) {
 
-		}
-		checkAll();
 		
 	} else if (turnNumber == 7) {
-		if 				((boxNumID(3).innerText == "O") && (boxNumID(7).innerText == "")) {
-								boxNumID(7).innerText = "O";
-		} else if ((boxNumID(1).innerText == "O") && (boxNumID(3).innerText == "O") && (boxNumID(2).innerText == "")) {
-								boxNumID(2).innerText = "O";
-		} else if ((boxNumID(1).innerText == "O") && (boxNumID(6).innerText == "O") && (boxNumID(7).innerText == "")) {
-								boxNumID(7).innerText = "O";
-		} else if ((boxNumID(4).innerText == "") && (boxNumID(8).innerText != "O") && (boxNumID(9).innerText != "O")) {
-								boxNumID(4).innerText = "O";
-		} else if ((boxNumID(8).innerText == "O") && (boxNumID(9).innerText == "O") && (boxNumID(7).innerText == "")){
-								boxNumID(7).innerText = "O";
-		} else if ((boxNumID(3).innerText == "O") && (boxNumID(9).innerText == "O") && (boxNumID(6).innerText == "")){
-								boxNumID(6).innerText = "O";
-		} else if ((boxNumID(4).innerText == "O") && (boxNumID(5).innerText == "O") && (boxNumID(6).innerText == "")){
-								boxNumID(6).innerText = "O";
-		} else if ((boxNumID(5).innerText == "O") && (boxNumID(7).innerText == "O") && (boxNumID(3).innerText == "")){
-								boxNumID(3).innerText = "O";
-		} else if ((boxNumID(7).innerText == "O") && (boxNumID(9).innerText == "O") && (boxNumID(8).innerText == "")){
-								boxNumID(8).innerText = "O";
-		} else if (knight2() && (boxNumID(7).innerText == "X") && (boxNumID(3).innerText == "")){
-								boxNumID(3).innerText = "O";
-		}	else if ((boxNumID(1).innerText == "O") && (boxNumID(4).innerText == "O") && (boxNumID(7).innerText == "")){
-								boxNumID(7).innerText = "O";
-		}	else if (knight1() && knight6() && (boxNumID(7).innerText == "")){
-								boxNumID(7).innerText = "O";
-		} else if ((boxNumID(2).innerText == "O") && (boxNumID(5).innerText == "O") && (boxNumID(8).innerText == "")){
-								boxNumID(8).innerText = "O";
+		anyCheck();
+		if (!(anyCheckWin && win)) {
+			moveHold = "X";
+			anyCheck();
+			knightCheck();
 		}
 		checkAll();
 
 	} else if (turnNumber == 8) {
-		anyCheck();
-		if (win == false) {
 
-		}
-		checkAll();
 	} else if (turnNumber == 9) {
-		if (document.move == "O") {
-			for (var turn9 = 1; turn9 <= 9; turn9++) {
-				if (boxNumID(turn9).innerText == "") {
-					boxNumID(turn9).innerText = "O";
-					checkAll();
-				}				
-			}
+		for (var turn9 = 1; turn9 <= 9; turn9++) {
+			if (boxNumID(turn9).innerText == "") {
+				boxNumID(turn9).innerText = "O";
+				checkAll();
+			}				
 		}
 	}
 	
@@ -396,7 +193,6 @@ function winnerUser() {
 
 //I want to eventaully change my entire AI turn logic to this... here we're checking for any three in a row wins
 function threeInARow(turn) {
-	var win = false;
 	if (winCheck(1, 2, 3, turn) ||
 			winCheck(4, 5, 6, turn) ||
 			winCheck(7, 8, 9, turn) ||
@@ -411,7 +207,6 @@ function threeInARow(turn) {
 	return win;
 }
 
-var win = false;
 function winCheck(a, b, c, turn) {
 	
 	if (moveCheck(a) == turn && moveCheck(b) == turn && moveCheck(c) == turn) {
