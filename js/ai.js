@@ -32,7 +32,6 @@ function knightCheck() {
 		else if (knight4() && (boxNumID(7).innerText == "")) {boxNumID(7).innerText = "O";}
 		else if (knight8() && (boxNumID(3).innerText == "")) {boxNumID(3).innerText = "O";}
 	} else if (turnNumber == 7) {
-		alert("is turn number running?");
 		if 			(knight1() && knight6()) { 
 			if (boxNumID(4).innerText == "") {boxNumID(4).innerText = "O";} else if (boxNumID(6).innerText == "") {boxNumID(6).innerText = "O";}}
 		else if (knight2() && knight7()) {

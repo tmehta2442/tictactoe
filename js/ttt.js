@@ -61,13 +61,11 @@ function revTurn() {
 
 //check for a winner, update who is playing and incremement mouse click
 function checkAll() {
-	alert("start checkall");
 	winnerUser();
 	document.move = "X";
 	console.log("this move is " + document.move);
 	setMessage(document.move + "'s move");
 	revTurn();
-	alert("end checkall");
 }
 
 //checking if game is a draw, counter for turn increased, container for "holdThis" modified for AI logic, then the aiturn is run
@@ -157,16 +155,11 @@ function aiTurn() {
 
 		
 	} else if (turnNumber == 7) {
-		alert("anycheck about to run");
 		anyCheck();
 		if (!(anyCheckWin && win)) {
-			alert("1st inside");	
 			moveHold = "X";
-			alert("2st inside");
 			anyCheck();
-			alert("3st inside");
 			knightCheck();
-			alert("4st inside");
 		}
 		checkAll();
 
@@ -184,56 +177,11 @@ function aiTurn() {
 	turn();		
 }
 
-//sees who won
-function winnerUser() {
-	if (threeInARow(document.move)) {
-		document.winner = document.move;
-		if (document.move == "O") {
-			alert("the computer won, as expected");
-		} else {
-			alert("wait, you should not have been able to win...");
-		}
-
-		location.reload();
-	}
-}
-
-//I want to eventaully change my entire AI turn logic to this... here we're checking for any three in a row wins
-function threeInARow(turn) {
-	if (winCheck(1, 2, 3, turn) ||
-			winCheck(4, 5, 6, turn) ||
-			winCheck(7, 8, 9, turn) ||
-			winCheck(1, 4, 7, turn) ||
-			winCheck(2, 5, 8, turn) ||
-			winCheck(3, 6, 9, turn) ||
-			winCheck(1, 5, 9, turn) ||
-			winCheck(3, 5, 7, turn)) {
-
-			win = true;
-	}
-	return win;
-}
-
-function winCheck(a, b, c, turn) {
-	
-	if (moveCheck(a) == turn && moveCheck(b) == turn && moveCheck(c) == turn) {
-		win = true;
-	}
-	return win;
-}
 
 // function that will return to us the innerText value for specified box. This is used in conjunction w/ threeInARow
 function moveCheck(num) {
 	return document.getElementById("box" + num).innerText;
 }
 
-//should only be run if all tiles are taken
-function drawGame() {
-	if (moveCheck(1) != "" && moveCheck(2) != "" && moveCheck(3) != "" && moveCheck(4) != "" && moveCheck(5) != "" && moveCheck(6) != "" && moveCheck(7) != "" && moveCheck(8) != "" && moveCheck(9) != "") {
-		if (win != true) {
-			alert("draw!!!")
-		}
-		location.reload();
-	}
-}
+
 
