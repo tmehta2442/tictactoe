@@ -26,12 +26,12 @@ function anyCheck() {
 //counter any "knight move" X may make
 
 function knightCheck() {
-	if (turnNumber == 5) {
+	if ((turnNumber == 4) || (turnNumber == 5)) {
 		if 			(knight1() && (boxNumID(3).innerText == "")) {boxNumID(3).innerText = "O";}
 		else if (knight2() && (boxNumID(7).innerText == "")) {boxNumID(7).innerText = "O";}
 		else if (knight4() && (boxNumID(7).innerText == "")) {boxNumID(7).innerText = "O";}
 		else if (knight8() && (boxNumID(3).innerText == "")) {boxNumID(3).innerText = "O";}
-	} else if (turnNumber == 7) {
+	} else if ((turnNumber == 6) || (turnNumber == 7)) {
 		if 			(knight1() && knight6()) { 
 			if (boxNumID(4).innerText == "") {boxNumID(4).innerText = "O";} else if (boxNumID(6).innerText == "") {boxNumID(6).innerText = "O";}}
 		else if (knight2() && knight7()) {
@@ -42,3 +42,17 @@ function knightCheck() {
 			if (boxNumID(2).innerText == "") {boxNumID(2).innerText = "O";} else if (boxNumID(7).innerText == "") {boxNumID(7).innerText = "O";}}
 	}
 }
+
+function cornerCheck() {
+	if (turnNumber == 4) {
+		if 			(diaEndCheck1()) { if (boxNumID(2).innerText == "") {boxNumID(2).innerText = "O";} 
+			else if (boxNumID(8).innerText == "") {boxNumID(8).innerText = "O";}}
+		else if (diaEndCheck2()) { if (boxNumID(2).innerText == "") {boxNumID(2).innerText = "O";}
+			else if (boxNumID(8).innerText == "") {boxNumID(8).innerText = "O";}
+		}
+	}
+}
+
+
+
+

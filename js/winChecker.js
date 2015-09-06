@@ -36,9 +36,6 @@ function winCheck(a, b, c, turn) {
 	return win;
 }
 
-
-
-
 //should only be run if all tiles are taken
 function drawGame() {
 	if (moveCheck(1) != "" && moveCheck(2) != "" && moveCheck(3) != "" && moveCheck(4) != "" && moveCheck(5) != "" && moveCheck(6) != "" && moveCheck(7) != "" && moveCheck(8) != "" && moveCheck(9) != "") {
@@ -47,4 +44,9 @@ function drawGame() {
 		}
 		location.reload();
 	}
+}
+
+// function that will return to us the innerText value for specified box. This is used in conjunction w/ threeInARow
+function moveCheck(num) {
+	return document.getElementById("box" + num).innerText;
 }

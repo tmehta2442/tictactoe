@@ -9,71 +9,9 @@
 // -TJ
 
 //starting game
-
 window.onload = function start() {
 	revTurn();
 	letsPlay();
-}
-
-function boxNumID(num) {
-	return document.getElementById("box" + num)
-}
-
-//determines who goes first
-function letsPlay() {
-	document.winner = null;
-	// if (Math.random() < 0.5) {
-	if (true) {
-		document.move = "O";
-		aiMessage(document.move + " went first");
-		
-	} else {
-		document.move = "X"
-		aiMessage(document.move + " went first");
-	}
-	whoIsAi();
-}
-
-//setting a message & letting player go first, or running up AI  depending on document.move
-function whoIsAi(){
-	if (document.move == "X"){
-		turn();
-		setMessage(document.move + "'s move");
-	} else {
-		aiTurn();
-		setMessage(document.move + "'s move");
-	}
-}
-
-function aiMessage(msg) {
-	document.getElementById("aimsg").innerText = msg;
-}
-function setMessage(msg) {
-	document.getElementById("msg").innerText = msg;
-}
-
-//counter for turns
-var turnNumber = 0;
-function revTurn() {
-	console.log('mouseClick / turnNumber = ' + (turnNumber + 1));
-	turnNumber++;
-}
-
-//check for a winner, update who is playing and incremement mouse click
-function checkAll() {
-	winnerUser();
-	document.move = "X";
-	console.log("this move is " + document.move);
-	setMessage(document.move + "'s move");
-	revTurn();
-}
-
-//checking if game is a draw, counter for turn increased, container for "holdThis" modified for AI logic, then the aiturn is run
-function withinTurn() {
-	revTurn();
-	holdThis();
-	aiTurn();
-	drawGame();
 }
 
 var row1a 	= false;
@@ -115,73 +53,125 @@ var thirdcolcornersX = false;
 var anyCheckWin = false;
 var win = false;
 var moveHold = null;
+var turnNumber = 0;
 
-function holdThis () {
-	if ( document.move == "X") {
-		moveHold = "X";
+//determines who goes first
+function letsPlay() {
+	document.winner = null;
+	if (Math.random() < 0.5) {
+		document.move = "O";
+		aiMessage(document.move + " went first");
+		
 	} else {
-		moveHold = "O";
+		document.move = "X"
+		aiMessage(document.move + " went first");
 	}
-	return moveHold;
+	whoIsAi();
 }
 
+//setting a message & letting player go first, or running up AI  depending on document.move
+function whoIsAi(){
+	if (document.move == "X"){
+		turn();
+		setMessage(document.move + "'s move");
+	} else {
+		aiTurn();
+		setMessage(document.move + "'s move");
+	}
+}
+
+//this calls the "ai" based on turn
 function aiTurn() {
 	document.move = "O";
 	holdThis();
 
-	if 	((turnNumber == 1) && (boxNumID(5).innerText == "")) {
-								boxNumID(5).innerText = "O";
-								checkAll();
-
-	} else if 	 (turnNumber == 3) {
+//TURN1
+	if ((turnNumber == 1) && (boxNumID(5).innerText == "")) {
+		boxNumID(5).innerText = "O"; checkAll();
+	} 
+//TURN2
+	else if (turnNumber == 2) {
+		if (boxNumID(5).innerText == "") {
+			boxNumID(5).innerText = "O"
+		} else {
+			boxNumID(7).innerText = "O"
+		}
+		checkAll();
+//TURN3
+	}	else if 	 (turnNumber == 3) {
 		if 				 (boxNumID(9).innerText == "") {
 							 	boxNumID(9).innerText = "O";					
 		} else if  (boxNumID(1).innerText == "") {
 								boxNumID(1).innerText = "O";			
 		}
 		checkAll();
-		
-	} else if (turnNumber == 5) {
+//TURN4
+	}	else if (turnNumber == 4) { 
+		moveHold = "X";
 		anyCheck();
-
+		if (anyCheckWin == false) {
+			if (diaCheck2() && (boxNumID(7).innerText == "O")) {
+				if (boxNumID(1).innerText == "") {
+					boxNumID(1).innerText = "O";
+				} else if (boxNumID(9).innerText == "") {
+					boxNumID(9).innerText = "O"
+				}
+			}
+			knightCheck();
+			cornerCheck();
+		}
+		checkAll();
+//TURN5
+	}	else if (turnNumber == 5) {
+		anyCheck();
 		if (anyCheckWin == false) {
 			moveHold = "X";
-			anyCheck();
 			knightCheck();
 		}
-
 		checkAll();
+//TURN6
 	} else if (turnNumber == 6) {
-
-		
+		moveHold = "X";
+		anyCheck();
+		if (threeInARow()) { 
+			checkAll();
+		} else if (!(anyCheckWin && win)) {
+			moveHold = "X";
+			knightCheck();
+			checkAll();
+		}
+//TURN7
 	} else if (turnNumber == 7) {
 		anyCheck();
 		if (!(anyCheckWin && win)) {
 			moveHold = "X";
-			anyCheck();
 			knightCheck();
 		}
 		checkAll();
-
+//TURN8
 	} else if (turnNumber == 8) {
-
+		moveHold = "X";
+		anyCheck();
+		if (!(anyCheckWin && win)) {
+			moveHold = "O";
+			knightCheck();
+		}
+		checkAll();
+//TURN9
 	} else if (turnNumber == 9) {
-		for (var turn9 = 1; turn9 <= 9; turn9++) {
-			if (boxNumID(turn9).innerText == "") {
-				boxNumID(turn9).innerText = "O";
-				checkAll();
-			}				
+		if (document.move == "O") {
+			for (var turn9 = 1; turn9 <= 9; turn9++) {
+				if (boxNumID(turn9).innerText == "") {
+					boxNumID(turn9).innerText = "O";
+					checkAll();
+				}				
+			}
 		}
 	}
 	
 	turn();		
 }
 
-
-// function that will return to us the innerText value for specified box. This is used in conjunction w/ threeInARow
-function moveCheck(num) {
-	return document.getElementById("box" + num).innerText;
-}
 
 
 
