@@ -38,5 +38,7 @@ function knightCheck() {
 			if (boxNumID(2).innerText == "") {boxNumID(2).innerText = "O";} else if (boxNumID(8).innerText == "") {boxNumID(8).innerText = "O";}}
 	  else if (knight3() && knight4()) {
 			if (boxNumID(4).innerText == "") {boxNumID(4).innerText = "O";} else if (boxNumID(6).innerText == "") {boxNumID(6).innerText = "O";}}
+	  else if (knight5() && knight8()) {
+			if (boxNumID(2).innerText == "") {boxNumID(2).innerText = "O";} else if (boxNumID(7).innerText == "") {boxNumID(7).innerText = "O";}}
 	}
 }
