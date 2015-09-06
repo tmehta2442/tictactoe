@@ -26,12 +26,12 @@ function letsPlay() {
 	if (true) {
 		document.move = "O";
 		aiMessage(document.move + " went first");
-		whoIsAi();
+		
 	} else {
 		document.move = "X"
 		aiMessage(document.move + " went first");
 	}
-	
+	whoIsAi();
 }
 
 //setting a message & letting player go first, or running up AI  depending on document.move
@@ -61,11 +61,13 @@ function revTurn() {
 
 //check for a winner, update who is playing and incremement mouse click
 function checkAll() {
+	alert("start checkall");
 	winnerUser();
 	document.move = "X";
 	console.log("this move is " + document.move);
 	setMessage(document.move + "'s move");
 	revTurn();
+	alert("end checkall");
 }
 
 //checking if game is a draw, counter for turn increased, container for "holdThis" modified for AI logic, then the aiturn is run
@@ -155,11 +157,16 @@ function aiTurn() {
 
 		
 	} else if (turnNumber == 7) {
+		alert("anycheck about to run");
 		anyCheck();
 		if (!(anyCheckWin && win)) {
+			alert("1st inside");	
 			moveHold = "X";
+			alert("2st inside");
 			anyCheck();
+			alert("3st inside");
 			knightCheck();
+			alert("4st inside");
 		}
 		checkAll();
 
@@ -219,10 +226,6 @@ function winCheck(a, b, c, turn) {
 function moveCheck(num) {
 	return document.getElementById("box" + num).innerText;
 }
-
-// function endMove(num) {
-// 	return document.getElementById("box" + num);
-// }
 
 //should only be run if all tiles are taken
 function drawGame() {
