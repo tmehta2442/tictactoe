@@ -5,8 +5,8 @@ var numO = 0
 //determines who goes first
 function letsPlay() {
 	document.winner = null;
-	// if (Math.random() < 0.5) {
-	if (true) {
+	if (Math.random() < 0.5) {
+	//if (true) {
 		document.move = "O";
 		aiMessage(document.move + " went first");
 		whoIsAi();
