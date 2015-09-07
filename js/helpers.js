@@ -8,24 +8,21 @@ function letsPlay() {
 	if (Math.random() < 0.5) {
 	//if (true) {
 		document.move = "O";
-		aiMessage(document.move + " went first");
 		whoIsAi();
 	} else {
 		document.move = "X"
-		aiMessage(document.move + " went first");
+		setMessage("You go first as X");
 		whoIsAi();
 	}
 
 }
 
-//setting a message & letting player go first, or running up AI  depending on document.move
+//running up AI or turn depending on document.move
 function whoIsAi(){
 	if (document.move == "X"){
 		turn();
-		setMessage(document.move + "'s move");
 	} else {
 		aiTurn();
-		setMessage(document.move + "'s move");
 	}
 }
 
@@ -43,9 +40,6 @@ function holdThis () {
 	return moveHold;
 }
 
-function aiMessage(msg) {
-	document.getElementById("aimsg").innerText = msg;
-}
 function setMessage(msg) {
 	document.getElementById("msg").innerText = msg;
 }
@@ -54,7 +48,7 @@ function setMessage(msg) {
 function checkAll() {
 	winnerUser();
 	document.move = "X";
-	setMessage(document.move + "'s move");
+	setMessage("Your move");
 	revTurn();
 }
 

@@ -16,7 +16,6 @@ function aiTurn() {
 //TURN1
 	if ((turnNumber == 1) && (boxNumID(5).innerText == "")) {
 		boxNumID(5).innerText = "O";
-		//countO();
 	} 
 //TURN2
 	else if (turnNumber == 2) {
@@ -25,7 +24,6 @@ function aiTurn() {
 		} else {
 			boxNumID(7).innerText = "O"
 		}
-		//countO();
 //TURN3
 	}	else if 	 (turnNumber == 3) {
 		if 				 (boxNumID(9).innerText == "") {
@@ -33,7 +31,6 @@ function aiTurn() {
 		} else if  (boxNumID(1).innerText == "") {
 								boxNumID(1).innerText = "O";			
 		}
-		//countO();
 //TURN4
 	}	else if (turnNumber == 4) {
 			countO();
@@ -49,11 +46,9 @@ function aiTurn() {
 		if (!(numO == 2)) {
 			if (boxNumID(9).innerText == "") {
 				boxNumID(9).innerText = "O";				
-		}}}}}}
-	}
-		
+		}}}}}}		
 //TURN5
-		else if (turnNumber == 5) {
+	}	else if (turnNumber == 5) {
 			countO();
 			moveHold = "X"
 			anyCheck();
@@ -63,8 +58,7 @@ function aiTurn() {
 		if (!(numO == 3)) {
 			moveHold = "X";
 			knightCheck();
-		}
-	}
+		}}
 //TURN6
 	} else if (turnNumber == 6) {
 		countO();
@@ -77,7 +71,6 @@ function aiTurn() {
 		if (!(numO == 3)) {
 			knightCheck();
 		}}}
-
 //TURN7
 	} else if (turnNumber == 7) {
 		countO();

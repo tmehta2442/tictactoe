@@ -24,14 +24,13 @@ function anyCheck() {
 }
 
 //counter any "knight move" X may make
-
 function knightCheck() {
 	if ((turnNumber == 4) || (turnNumber == 5)) {
 		if 			( (knight1() || knight8() ) && (boxNumID(7).innerText == "")) {boxNumID(7).innerText = "O";}
 		else if ( (knight2() || knight4() ) && (boxNumID(3).innerText == "")) {boxNumID(3).innerText = "O";}
 		else if ( (knight3() || knight5() ) && (boxNumID(1).innerText == "")) {boxNumID(1).innerText = "O";}
-		else if ( (knight6() || knight7() ) && (boxNumID(9).innerText == "")) {boxNumID(9).innerText = "O";}
-	} else if ((turnNumber == 6) || (turnNumber == 7)) {
+		else if ( (knight6() || knight7() ) && (boxNumID(9).innerText == "")) {boxNumID(9).innerText = "O";}} 
+	else if ((turnNumber == 6) || (turnNumber == 7)) {
 		if 			(knight1() && knight6()) { 
 			if 			(boxNumID(4).innerText == "") {boxNumID(4).innerText = "O";} 
 			else if (boxNumID(6).innerText == "") {boxNumID(6).innerText = "O";}}

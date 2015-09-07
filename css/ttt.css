@@ -6,10 +6,13 @@ th, td {
 	border: 5px solid lightblue;
 }
 
+
+
 table {
   margin: auto;
   border-spacing: 0;
 }
+
 .box {
 	padding: 0 0 0 0;
 	text-align: center;
@@ -18,16 +21,24 @@ table {
 	width: 150px;
 	height: 150px;
   opacity: .75;
-  box-shadow: 3px 3px 0px #888888
-}
-
-.box {
-	width: 150px;
-	height: 150px;
-  opacity: .75;
-  box-shadow: 3px 3px 0px #888888
 }
 
 .box:hover {
   background-color: #aaa;
+}
+
+#box1, #box4, #box7 {
+	border-left: 0;
+}
+
+#box1, #box2, #box3 {
+	border-top: 0;
+}
+
+#box3, #box6, #box9 {
+	border-right: 0;
+}
+
+#box7, #box8, #box9 {
+	border-bottom: 0;
 }
