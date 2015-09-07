@@ -2,31 +2,31 @@ var moveHold = null;
 var turnNumber = 0;
 var numO = 0
 
+//counter for turns
+function revTurn() {
+	turnNumber++;
+}
+
 //determines who goes first
+//a simple random is put in to see who goes first
+//if less than 0.5 then AI goes first
+//	--at that point aiTurn is spun up and we're off to the races!
+//if more than 0.5 turn is spun up which is what will capture the user's move
 function letsPlay() {
 	document.winner = null;
-	if (Math.random() < 0.5) {
-	//if (true) {
+	//if (Math.random() < 0.5) {
+	if (true) {
 		document.move = "O";
-		whoIsAi();
+		aiTurn();
 	} else {
 		document.move = "X"
 		setMessage("You go first as X");
-		whoIsAi();
-	}
-
-}
-
-//running up AI or turn depending on document.move
-function whoIsAi(){
-	if (document.move == "X"){
 		turn();
-	} else {
-		aiTurn();
 	}
+
 }
 
-
+//created this so I can just type boxNumID(*) rather than the entire contents of the function. Works ver nicely!
 function boxNumID(num) {
 	return document.getElementById("box" + num)
 }
@@ -60,12 +60,8 @@ function withinTurn() {
 	drawGame();
 }
 
-//counter for turns
-function revTurn() {
-	turnNumber++;
-}
 
-
+//determins the number of "O's" on the board
 function countO() {
 	numO = 0;
 	for (var i = 1; i <= 9; i++) {

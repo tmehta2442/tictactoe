@@ -24,12 +24,18 @@ function anyCheck() {
 }
 
 //counter any "knight move" X may make
+//--notice that due to similarities in position strength, that the final box that will be placed with
+//		an "O" can have multiple knights called. This dramatically reduced the logic confusion, not
+//		to mention this function's length
 function knightCheck() {
-	if ((turnNumber == 4) || (turnNumber == 5)) {
+	if (		(turnNumber == 4)) {
 		if 			( (knight1() || knight8() ) && (boxNumID(7).innerText == "")) {boxNumID(7).innerText = "O";}
 		else if ( (knight2() || knight4() ) && (boxNumID(3).innerText == "")) {boxNumID(3).innerText = "O";}
 		else if ( (knight3() || knight5() ) && (boxNumID(1).innerText == "")) {boxNumID(1).innerText = "O";}
-		else if ( (knight6() || knight7() ) && (boxNumID(9).innerText == "")) {boxNumID(9).innerText = "O";}} 
+		else if ( (knight6() || knight7() ) && (boxNumID(9).innerText == "")) {boxNumID(9).innerText = "O";}}
+	else 	if(turnNumber == 5) {
+		if 			( (knight1() || knight8() ) && (boxNumID(3).innerText == "")) {boxNumID(3).innerText = "O";}
+		else if (	(knight2() || knight4() ) && (boxNumID(7).innerText == "")) {boxNumID(7).innerText = "O";}}
 	else if ((turnNumber == 6) || (turnNumber == 7)) {
 		if 			(knight1() && knight6()) { 
 			if 			(boxNumID(4).innerText == "") {boxNumID(4).innerText = "O";} 
@@ -54,14 +60,10 @@ function knightCheck() {
 
 function outerCheck() {
 	if (turnNumber == 4) {
-		if 			(diaEndCheck1()) { if (boxNumID(2).innerText == "") {boxNumID(2).innerText = "O";} 
-			else if (boxNumID(8).innerText == "") {boxNumID(8).innerText = "O";}}
-		else if (diaEndCheck2()) { if (boxNumID(2).innerText == "") {boxNumID(2).innerText = "O";}
+		if 			(diaEndCheck1() || diaEndCheck2() || midRow() ) { if (boxNumID(2).innerText == "") {boxNumID(2).innerText = "O";}
 			else if (boxNumID(8).innerText == "") {boxNumID(8).innerText = "O";}}
 		else if (midCol()) 			 { if (boxNumID(4).innerText == "") {boxNumID(4).innerText = "O";}
-			else if (boxNumID(6).innerText == "") {boxNumID(6).innerText = "O";}}
-		else if (midRow()) 			 { if (boxNumID(2).innerText == "") {boxNumID(2).innerText = "O";}
-			else if (boxNumID(8).innerText == "") {boxNumID(8).innerText = "O";}			
+			else if (boxNumID(6).innerText == "") {boxNumID(6).innerText = "O";}		
 		}
 	}
 	countO();

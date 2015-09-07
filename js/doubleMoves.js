@@ -1,3 +1,13 @@
+//So this is kinda interesting. I did my best to name according to a literal translation. For example
+// "topCorners" refers to the top two corers.
+//The functions can refer to holding either a "X" or "O" value, based on "moveHold". If the function holds
+//		true, then I return that. This is important because I use these true/fasles in the ai.js. So it kinda
+//		runs like this: 
+//			1. in aiTurn() the "movehold" is either set or the inherited value is used. 
+//			2. Then a function in ai.js is run.
+//			3. That function will then refer to a function here, which uses the "moveHold" to determine true/false
+//			4. now back to the ai.js, based on the t/f combination, a box will be filled with the correct "O"
+
 function topCorners() 		 { if( (boxNumID(1).innerText == moveHold) && (boxNumID(3).innerText == moveHold)) {return true;} else {return false;}}
 function bottomCorners() 	 { if( (boxNumID(7).innerText == moveHold) && (boxNumID(9).innerText == moveHold)) {return true;} else {return false;}}
 function firstColCorners() { if( (boxNumID(1).innerText == moveHold) && (boxNumID(7).innerText == moveHold)) {return true;} else {return false;}}

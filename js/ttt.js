@@ -1,14 +1,31 @@
-// Hi! So this turned out to be a lot more difficult than I had expected... 
-// I have some refactoring to do, and eventually I want to mimick the way
-// threeInARow is being used, but for 2 space and other situations. 
-// Anyway, right now this is somewhat playable... some errors persist,
-// but with some more time and code cleanup this will actaully work quite well.
-
-// Thanks!
-
-// -TJ
 
 //this calls the "ai" based on turn... playing tic tac toe
+//--For the first three turns it is quite simple: the computer
+//		will try to go center, if not either the first or last corner
+
+//after that things get somewhat complicated.
+//--1. I call the count, so that the "newest" value is in the numO
+//--2. Here there are a lot of checks, all start with a check to "anyCheck"
+//			what this does is to either check if there is an immediate win for
+//			either X or O and it will either go for that win, or counter
+//--3. After that there are various other checks, knightCheck (taken from
+//			the chess move), for example is a way to see if we are getting "forked".
+//--4. the checkAll is run which will determine if there is a winner, if not
+//				the turn goes back to "X", and new message is set and the turn number
+//				is increased. 
+
+// Some notes:
+// a. To see a full list of the Ai logic go to ai.js
+// b. The moveHold variable, which can seen in use at doubleMoves.js, is a way
+//				for the program to replace a check with either X or O. The functions in
+//				doubleWin.js are then called in ai.js. Why did I do this? Because I
+//				found that either calling one or two of the functions found within
+//				doubleMove.js reliably covers all board combinations.
+//c. For A LOT of my JS I decided to place if statments in a single line, even
+//				if it was very long. This not only helped clean up the code, but made it
+//				significantly easier to read. 
+
+
 function aiTurn() {
 	document.move = "O";
 	holdThis();
@@ -34,9 +51,11 @@ function aiTurn() {
 //TURN4
 	}	else if (turnNumber == 4) {
 			countO();
+			alert(document.move);
+			alert(moveHold);
 			moveHold = "X";
 		if (!(numO == 2)) {	
-		anyCheck();
+			anyCheck();
 		if (!(numO == 2)) {
 			knightCheck(); 
 		if (!(numO == 2)) {
@@ -70,9 +89,12 @@ function aiTurn() {
 			anyCheck();
 		if (!(numO == 3)) {
 			knightCheck();
-		}}}
+		if (!(numO == 3)) {
+			allDiaCheck();
+		}}}}
 //TURN7
 	} else if (turnNumber == 7) {
+		alert(moveHold);
 		countO();
 		anyCheck();
 		if (!(numO == 4)) {

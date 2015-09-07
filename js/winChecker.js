@@ -28,6 +28,7 @@ function threeInARow(turn) {
 	return win;
 }
 
+//three in a row wins... based on threeInARow!!
 function winCheck(a, b, c, turn) {
 	if (moveCheck(a) == turn && moveCheck(b) == turn && moveCheck(c) == turn) {
 		win = true;
