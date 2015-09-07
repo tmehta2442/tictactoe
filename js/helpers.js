@@ -14,8 +14,7 @@ function revTurn() {
 //if more than 0.5 turn is spun up which is what will capture the user's move
 function letsPlay() {
 	document.winner = null;
-	//if (Math.random() < 0.5) {
-	if (true) {
+	if (Math.random() < 0.5) {
 		document.move = "O";
 		aiTurn();
 	} else {
