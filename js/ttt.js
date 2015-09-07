@@ -51,8 +51,6 @@ function aiTurn() {
 //TURN4
 	}	else if (turnNumber == 4) {
 			countO();
-			alert(document.move);
-			alert(moveHold);
 			moveHold = "X";
 		if (!(numO == 2)) {	
 			anyCheck();
@@ -94,7 +92,6 @@ function aiTurn() {
 		}}}}
 //TURN7
 	} else if (turnNumber == 7) {
-		alert(moveHold);
 		countO();
 		anyCheck();
 		if (!(numO == 4)) {
