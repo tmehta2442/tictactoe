@@ -8,86 +8,15 @@
 
 // -TJ
 
-//starting game
-window.onload = function start() {
-	revTurn();
-	letsPlay();
-}
-
-var row1a 	= false;
-var row1b 	= false;
-var row2a 	= false;
-var row2b 	= false;
-var row3a 	= false;
-var row3b 	= false;
-var col1a 	= false;
-var col1b 	= false;
-var col2a 	= false;
-var col2b 	= false;
-var col3a 	= false;
-var col3b 	= false;
-var smdia1 	= false;
-var smdia2 	= false;
-var smdia3 	= false;
-var smdia4 	= false;
-var dia1 		= false;
-var dia2 		= false;
-var dia3 		= false;
-var dia4 		= false;
-var diaend1 = false;
-var diaend2 = false;
-var midcolX	= false;
-var midrowX	= false;
-var horse1	= false;
-var horse2	= false;
-var horse3	= false;
-var horse4	= false;
-var horse5	= false;
-var horse6	= false;
-var horse7	= false;
-var horse8	= false;
-var topcornersX = false;
-var bottomcornersX = false;
-var firstcolcornersX = false;
-var thirdcolcornersX = false;
-var anyCheckWin = false;
-var win = false;
-var moveHold = null;
-var turnNumber = 0;
-
-//determines who goes first
-function letsPlay() {
-	document.winner = null;
-	if (Math.random() < 0.5) {
-		document.move = "O";
-		aiMessage(document.move + " went first");
-		
-	} else {
-		document.move = "X"
-		aiMessage(document.move + " went first");
-	}
-	whoIsAi();
-}
-
-//setting a message & letting player go first, or running up AI  depending on document.move
-function whoIsAi(){
-	if (document.move == "X"){
-		turn();
-		setMessage(document.move + "'s move");
-	} else {
-		aiTurn();
-		setMessage(document.move + "'s move");
-	}
-}
-
-//this calls the "ai" based on turn
+//this calls the "ai" based on turn... playing tic tac toe
 function aiTurn() {
 	document.move = "O";
 	holdThis();
 
 //TURN1
 	if ((turnNumber == 1) && (boxNumID(5).innerText == "")) {
-		boxNumID(5).innerText = "O"; checkAll();
+		boxNumID(5).innerText = "O";
+		//countO();
 	} 
 //TURN2
 	else if (turnNumber == 2) {
@@ -96,7 +25,7 @@ function aiTurn() {
 		} else {
 			boxNumID(7).innerText = "O"
 		}
-		checkAll();
+		//countO();
 //TURN3
 	}	else if 	 (turnNumber == 3) {
 		if 				 (boxNumID(9).innerText == "") {
@@ -104,72 +33,95 @@ function aiTurn() {
 		} else if  (boxNumID(1).innerText == "") {
 								boxNumID(1).innerText = "O";			
 		}
-		checkAll();
+		//countO();
 //TURN4
-	}	else if (turnNumber == 4) { 
-		moveHold = "X";
+	}	else if (turnNumber == 4) {
+			countO();
+			moveHold = "X";
+		if (!(numO == 2)) {	
 		anyCheck();
-		if (anyCheckWin == false) {
-			if (diaCheck2() && (boxNumID(7).innerText == "O")) {
-				if (boxNumID(1).innerText == "") {
-					boxNumID(1).innerText = "O";
-				} else if (boxNumID(9).innerText == "") {
-					boxNumID(9).innerText = "O"
-				}
-			}
-			knightCheck();
-			cornerCheck();
-		}
-		checkAll();
+		if (!(numO == 2)) {
+			knightCheck(); 
+		if (!(numO == 2)) {
+			outerCheck();
+		if (!(numO == 2)) {
+			singleDiaCheck();
+		if (!(numO == 2)) {
+			if (boxNumID(9).innerText == "") {
+				boxNumID(9).innerText = "O";				
+		}}}}}}
+	}
+		
 //TURN5
-	}	else if (turnNumber == 5) {
-		anyCheck();
-		if (anyCheckWin == false) {
+		else if (turnNumber == 5) {
+			countO();
+			moveHold = "X"
+			anyCheck();
+		if (!(numO == 3)) {
+			moveHold = "O"
+			anyCheck();
+		if (!(numO == 3)) {
 			moveHold = "X";
 			knightCheck();
 		}
-		checkAll();
+	}
 //TURN6
 	} else if (turnNumber == 6) {
-		moveHold = "X";
-		anyCheck();
-		if (threeInARow()) { 
-			checkAll();
-		} else if (!(anyCheckWin && win)) {
+		countO();
+		moveHold = "O";
+		if (!(numO == 3)) {
+			anyCheck();
+		if (!(numO == 3)) {
 			moveHold = "X";
+			anyCheck();
+		if (!(numO == 3)) {
 			knightCheck();
-			checkAll();
-		}
+		}}}
+
 //TURN7
 	} else if (turnNumber == 7) {
+		countO();
 		anyCheck();
-		if (!(anyCheckWin && win)) {
+		if (!(numO == 4)) {
 			moveHold = "X";
 			knightCheck();
 		}
-		checkAll();
 //TURN8
 	} else if (turnNumber == 8) {
-		moveHold = "X";
-		anyCheck();
-		if (!(anyCheckWin && win)) {
-			moveHold = "O";
+		countO();
+		moveHold = "O"
+		if (!(numO == 4)) {
+			anyCheck();
+		if (!(numO == 4)) {
+			moveHold = "X";
+			anyCheck();
+		if (!(numO == 4)) {
 			knightCheck();
-		}
-		checkAll();
+		if (!(numO == 4)) {
+			outerCheck();
+		if ((document.move == "O") && (numO == 3)) {
+			var once = 0;
+			for (var i = 1; i <= 9; i++) {
+				if ((boxNumID(i).innerText == "") && (once <= 0)) {
+					boxNumID(i).innerText = "O";
+					once++;	
+				}		
+			}
+		}}}}}
 //TURN9
 	} else if (turnNumber == 9) {
-		if (document.move == "O") {
-			for (var turn9 = 1; turn9 <= 9; turn9++) {
-				if (boxNumID(turn9).innerText == "") {
-					boxNumID(turn9).innerText = "O";
-					checkAll();
+		countO();
+		if ((document.move == "O") && (numO == 4)) {
+			for (var i = 1; i <= 9; i++) {
+				if (boxNumID(i).innerText == "") {
+					boxNumID(i).innerText = "O";
+					
 				}				
 			}
 		}
 	}
-	
-	turn();		
+	checkAll();
+	turn();
 }
 
 

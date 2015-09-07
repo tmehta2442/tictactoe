@@ -1,3 +1,5 @@
+var win = false;
+
 //sees who won
 function winnerUser() {
 	if (threeInARow(document.move)) {
@@ -7,7 +9,6 @@ function winnerUser() {
 		} else {
 			alert("wait, you should not have been able to win...");
 		}
-
 		location.reload();
 	}
 }
@@ -22,14 +23,12 @@ function threeInARow(turn) {
 			winCheck(3, 6, 9, turn) ||
 			winCheck(1, 5, 9, turn) ||
 			winCheck(3, 5, 7, turn)) {
-
 			win = true;
 	}
 	return win;
 }
 
 function winCheck(a, b, c, turn) {
-	
 	if (moveCheck(a) == turn && moveCheck(b) == turn && moveCheck(c) == turn) {
 		win = true;
 	}
@@ -50,3 +49,7 @@ function drawGame() {
 function moveCheck(num) {
 	return document.getElementById("box" + num).innerText;
 }
+
+
+
+

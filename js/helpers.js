@@ -1,3 +1,35 @@
+var moveHold = null;
+var turnNumber = 0;
+var numO = 0
+
+//determines who goes first
+function letsPlay() {
+	document.winner = null;
+	// if (Math.random() < 0.5) {
+	if (true) {
+		document.move = "O";
+		aiMessage(document.move + " went first");
+		whoIsAi();
+	} else {
+		document.move = "X"
+		aiMessage(document.move + " went first");
+		whoIsAi();
+	}
+
+}
+
+//setting a message & letting player go first, or running up AI  depending on document.move
+function whoIsAi(){
+	if (document.move == "X"){
+		turn();
+		setMessage(document.move + "'s move");
+	} else {
+		aiTurn();
+		setMessage(document.move + "'s move");
+	}
+}
+
+
 function boxNumID(num) {
 	return document.getElementById("box" + num)
 }
@@ -37,4 +69,14 @@ function withinTurn() {
 //counter for turns
 function revTurn() {
 	turnNumber++;
+}
+
+
+function countO() {
+	numO = 0;
+	for (var i = 1; i <= 9; i++) {
+		if (boxNumID(i).innerText == "O") {
+			numO++
+		}
+	}
 }
