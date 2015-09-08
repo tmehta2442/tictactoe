@@ -17,7 +17,7 @@ function turn() {
 				(this).innerText = document.move;
 				withinTurn();
 			} else {
-				alert("already played");
+				setMessage("ALREADY PLAYED");
 			}
 		}
 	}

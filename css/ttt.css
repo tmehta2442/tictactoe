@@ -1,61 +1,24 @@
-/*body {
-  width: 100%;
-}
-
-th, td {
-	border: 5px solid lightblue;
-}
-
-table {
-  margin: auto;
-  border-spacing: 0;
-}
-
-.box {
-	padding: 0 0 0 0;
-	text-align: center;
-	font-size: 100px;
-	font-weight: bold;
-	width: 150px;
-	height: 150px;
-  opacity: .75;
-}
-
-.box:hover {
-  background-color: #aaa;
-}
-
-#box1, #box4, #box7 {
-	border-left: 0;
-}
-
-#box1, #box2, #box3 {
-	border-top: 0;
-}
-
-#box3, #box6, #box9 {
-	border-right: 0;
-}
-
-#box7, #box8, #box9 {
-	border-bottom: 0;
-}*/
-
-
-
-
+/*CREDIT: For the styling for that old school computer look that comes from [Max Rubenacker](http://maxenuber.com/).
+outside of that the styling I just went about positioning the game, tiles fonts... all pretty straightforward.*/
 
 body {
   width: 100%;
+  background: #383838;
+  color: #14fdce;
+  font-family: 'VT323';
+  font-size: 24px;
+  -webkit-font-smoothing: none;
+  line-height: 1.2;
 }
 
 th, td {
-	border: 5px solid lightblue;
+	border: 5px ridge #0c7b46;
 }
 
 table {
   margin: auto;
   border-spacing: 0;
+  padding-top: 20px;
 }
 
 .box {
@@ -93,12 +56,7 @@ table {
   box-sizing: border-box;
 }
 body {
-  background: #383838;
-  color: #14fdce;
-  font-family: 'VT323';
-  font-size: 24px;
-  -webkit-font-smoothing: none;
-  line-height: 1.2;
+  
 }
 h1 {
   font-size: 4rem;
