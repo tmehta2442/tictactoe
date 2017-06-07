@@ -10,7 +10,7 @@ function winnerUser() {
 		document.winner = document.move;
 
 		if (document.move == "O") {
-			winNote(("Computer wins. How about a nice game of"), ("https://youtu.be/s93KC4AGKnY?t=2m28s"), ("GLOBAL THERMONUCLEAR WAR?"));
+			winNote(("Computer wins. How about a nice game of"), ("https://www.youtube.com/watch?v=s93KC4AGKnY&feature=youtu.be&t=40s"), ("GLOBAL THERMONUCLEAR WAR?"));
 		} else {
 			winNote(("ALARM 1202:"), ("http://www.airspacemag.com/daily-planet/troubleshooting-101-1201-actually-and-1202-too-111339271/?no-ist"), 
 			("you should not have been able to win."));
