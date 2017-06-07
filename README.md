@@ -1,6 +1,6 @@
 Tic Tac Toe
 
-Can be found live at: [Tic Tac Toe](https://stark-savannah-7401.herokuapp.com/)  
+Can be found live at: [Tic Tac Toe](http://tmehta2442.github.io/tictactoe/)  
 This is hosted on Heroku so that first load may take a few moments...
 
 So this was a very intersting task. Building a TTT game that just had 2 human users was pretty straightforwawrd. Adding the AI was surprisingly difficult. In addition to the notes I have below, plase do read my comments within the JS files at it closely follows what is going on. 
